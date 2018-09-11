@@ -1,0 +1,13 @@
+<%= form_for(@ingredient) do |f| %>
+  <% if f.object.errors.any? %>
+    <% f.object.errors.full_messages.each do |message|%>
+      <%= message %><br>
+    <%end%>
+    <br>
+  <%end%>
+  
+
+  Name: <%= f.text_field :name%><br>
+  Serving Size: <!-- --> 
+  <%= f.submit %>
+<%end%>
