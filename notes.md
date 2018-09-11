@@ -1,3 +1,25 @@
+ToDo:
+  1. home page & root route
+  2. signup page 
+    - /users/new route
+    - users controller
+    - users#new & users#create actions
+    - basic users#show page to redirect_to if signup is successful
+        needs /users/:id route & users#show action
+    - enable sessions & log user in upon successfully creating a new account by setting session[:user_id] to newly created user's id
+  3. login page
+    - sessions controller
+    - sessions#new & sessions#create actions
+    - log user in by setting session[:user_id] to newly created user's id if email and password provided match existing user -- otherwise render login page again with errors
+    - redirect to user's show page if successfully logged in
+  4. log out 
+    - session#destroy action
+    - log user out by deleting :user_id from session hash
+  5. helper methods & protected content
+    - #current_user
+    - #logged_in?
+    - #redirect_if_not_logged_in
+        make this a before_action that occurs before all controller actions except welcome#home, users#new, and sessions#new (i.e. you should only be able to see the signup, login, and home page without signing in)
 
 Rails Project Review Requirement Checklist
 
