@@ -21,18 +21,19 @@ ToDo:
     X - #redirect_if_not_logged_in
        X you should only be able to see the signup, login, and home page without signing in
     6. CRUD Ingredients
-      - routes
+      X- routes
         C: get /ingredients/new, C: post /ingredients, 
         R: get /ingredients/:id, 
         U: get /ingredients/:id/[edit? update?], U: post /ingredients/:id, 
         D: delete /ingredients/:id
+      - Ingredients Controller
       - controller actions 
         #new, #create, 
         #show, 
         #destroy, 
         #update, [? #edit?]
     7. CRUD Basic Recipes
-      X- routes
+      - routes
         C: get /recipes/new, C: post /recipes, 
         R: get /recipes/:id, U: get /recipes/:id/[edit? update?], 
         U: post /recipes/:id, 
