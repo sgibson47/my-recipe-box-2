@@ -1,12 +1,12 @@
 ToDo:
-  1. home page & root route
-  2. signup page 
-    - /users/new route
-    - users controller
-    - users#new & users#create actions
-    - basic users#show page to redirect_to if signup is successful
+  X 1. home page & root route
+  X 2. signup page 
+    X - /users/new route
+    X - users controller
+    X - users#new & users#create actions
+    X - basic users#show page to redirect_to if signup is successful
         needs /users/:id route & users#show action
-    - enable sessions & log user in upon successfully creating a new account by setting session[:user_id] to newly created user's id
+    X - enable sessions & log user in upon successfully creating a new account by setting session[:user_id] to newly created user's id
   3. login page
     - sessions controller
     - sessions#new & sessions#create actions
