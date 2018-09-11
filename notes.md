@@ -15,11 +15,11 @@ ToDo:
   X 4. log out 
     X - session#destroy action
     X - log user out by deleting :user_id from session hash
-  5. helper methods & protected content
-    - #current_user
-    - #logged_in?
-    - #redirect_if_not_logged_in
-        make this a before_action that occurs before all controller actions except welcome#home, users#new, and sessions#new (i.e. you should only be able to see the signup, login, and home page without signing in)
+  X 5. helper methods & protected content
+    X - #current_user
+    X - #logged_in?
+    X - #redirect_if_not_logged_in
+       X you should only be able to see the signup, login, and home page without signing in
 
 Rails Project Review Requirement Checklist
 
