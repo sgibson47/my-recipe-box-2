@@ -20,6 +20,30 @@ ToDo:
     X - #logged_in?
     X - #redirect_if_not_logged_in
        X you should only be able to see the signup, login, and home page without signing in
+    6. CRUD Ingredients
+      - routes
+        C: get /ingredients/new, C: post /ingredients, 
+        R: get /ingredients/:id, 
+        U: get /ingredients/:id/[edit? update?], U: post /ingredients/:id, 
+        D: delete /ingredients/:id
+      - controller actions 
+        #new, #create, 
+        #show, 
+        #destroy, 
+        #update, [? #edit?]
+    7. CRUD Basic Recipes
+      - routes
+        - C: get /recipes/new, C: post /recipes, 
+        R: get /recipes/:id, U: get /recipes/:id/[edit? update?], 
+        U: post /recipes/:id, 
+        D: delete /recipes/:id
+      - controller actions 
+        #new, #create, 
+        #show, 
+        #destroy, 
+        #update, [? #edit?]
+      - forms & controllers should accomodate selecting [#?] from existing ingredients or create [#?] new ingredients
+
  Needs to Happen:
  - Create/Read/Update/Delete Ingredients
     - routes to C: get /ingredients/new, C: post /ingredients, R: get /ingredients/:id, U: get /ingredients/:id/[edit? update?], U: post /ingredients/:id, D: delete /ingredients/:id
@@ -45,16 +69,19 @@ ToDo:
 
   - License
 
+
+
+
+
   - Make it Pretty
+    - Add picture to recipes
+    - Add picture to ingredients
+    - cleaner way to take in instructions? maybe multiple strings that each descripe a step and then printing them in an ordered list to create an instructions section of a recipe show page. Is that another model? Instructions belong to recipes and recipes have many instructions?
 
-  - Add picture to recipes
-
-  - Add Making model to track rating, notes, and photo re each atempt
+  - Add Making model to track rating, notes, and photo re each attempt
   - Add class methods to sort recipes by avg ranking
 
-  - cleaner way to take in instructions? maybe multiple strings that each descripe a step and then printing them in an ordered list to create an instructions section of a recipe show page. Is that another model? Instructions belong to recipes and recipes have many instructions?
-
-    - Add model to hold recipe types? Breakfast, Lunch, Dinner etc.
+  - Add model to hold recipe types? Breakfast, Lunch, Dinner etc.
   - Add model to hold recipe categories? Paleo, Keto, Gluten Free, Vegetarian, Vegan 
 
 
