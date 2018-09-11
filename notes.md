@@ -12,9 +12,9 @@ ToDo:
     X - sessions#new & sessions#create actions
     X - log user in by setting session[:user_id] to newly created user's id if email and password provided match existing user -- otherwise render login page again with errors
     X- redirect to user's show page if successfully logged in
-  4. log out 
-    - session#destroy action
-    - log user out by deleting :user_id from session hash
+  X 4. log out 
+    X - session#destroy action
+    X - log user out by deleting :user_id from session hash
   5. helper methods & protected content
     - #current_user
     - #logged_in?
