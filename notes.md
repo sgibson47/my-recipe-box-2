@@ -7,11 +7,11 @@ ToDo:
     X - basic users#show page to redirect_to if signup is successful
         needs /users/:id route & users#show action
     X - enable sessions & log user in upon successfully creating a new account by setting session[:user_id] to newly created user's id
-  3. login page
-    - sessions controller
-    - sessions#new & sessions#create actions
-    - log user in by setting session[:user_id] to newly created user's id if email and password provided match existing user -- otherwise render login page again with errors
-    - redirect to user's show page if successfully logged in
+  X 3. login page
+    X - sessions controller
+    X - sessions#new & sessions#create actions
+    X - log user in by setting session[:user_id] to newly created user's id if email and password provided match existing user -- otherwise render login page again with errors
+    X- redirect to user's show page if successfully logged in
   4. log out 
     - session#destroy action
     - log user out by deleting :user_id from session hash
