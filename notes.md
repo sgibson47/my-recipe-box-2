@@ -32,8 +32,8 @@ ToDo:
         #destroy, 
         #update, [? #edit?]
     7. CRUD Basic Recipes
-      - routes
-        - C: get /recipes/new, C: post /recipes, 
+      X- routes
+        C: get /recipes/new, C: post /recipes, 
         R: get /recipes/:id, U: get /recipes/:id/[edit? update?], 
         U: post /recipes/:id, 
         D: delete /recipes/:id
