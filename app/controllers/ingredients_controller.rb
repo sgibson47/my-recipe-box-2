@@ -5,4 +5,6 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.new
   end
 
+  def create
+  end
 end
