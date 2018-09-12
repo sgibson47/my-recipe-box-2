@@ -34,6 +34,9 @@ class IngredientsController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
   private
 
   def ingredients_params
