@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :require_logged_in
+  before_action :find_ingredient_by_params_id, only: [:update, :destroy, :edit, :show]
 
   def new
     @ingredient = Ingredient.new
@@ -15,16 +16,13 @@ class IngredientsController < ApplicationController
   end
 
   def show
-    @ingredient = Ingredient.find(params[:id])
   end
 
   def edit
-    @ingredient = Ingredient.find(params[:id])
   end
 
 
   def update
-    @ingredient = Ingredient.find(params[:id])
     @ingredient.update(ingredients_params)
     if @ingredient.save
       #maybe add success message
@@ -35,12 +33,15 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
-    @ingredient = Ingredient.find(params[:id])
     @ingredient.destroy
     redirect_to "/"
   end
 
   private
+
+  def find_ingredient_by_params_id
+    @ingredient = Ingredient.find(params[:id])
+  end
 
   def ingredients_params
     params.require(:ingredient).permit(:name, :serving_size_number, :serving_size_unit)
