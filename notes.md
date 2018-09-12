@@ -20,35 +20,39 @@ ToDo:
     X - #logged_in?
     X - #redirect_if_not_logged_in
        X you should only be able to see the signup, login, and home page without signing in
-    6. CRUD Ingredients
+  X 6. CRUD Ingredients
       X- routes
         C: get /ingredients/new, C: post /ingredients, 
         R: get /ingredients/:id, 
         U: get /ingredients/:id/[edit? update?], U: post /ingredients/:id, 
         D: delete /ingredients/:id
       X- Ingredients Controller
-      - controller actions 
-        #new, #create, 
-        #show, 
-        #destroy, 
-        #update, [? #edit?]
-      - Views
-        - new
-        - form
-        - show
-        - update/edit
+      X- controller actions 
+        X#new, 
+        X#create, 
+        X#show, 
+        X#destroy, 
+        X#update,
+        X#edit
+      X- Views
+        X - new
+        X - form
+        X- show
+        X- edit
     7. CRUD Basic Recipes
       - routes
         C: get /recipes/new, C: post /recipes, 
-        R: get /recipes/:id, U: get /recipes/:id/[edit? update?], 
-        U: post /recipes/:id, 
+        R: get /recipes/:id, U: get /recipes/:id/edit, 
+        U: patch /recipes/:id, 
         D: delete /recipes/:id
       - controller actions 
         #new, #create, 
         #show, 
         #destroy, 
-        #update, [? #edit?]
-      - forms & controllers should accomodate selecting [#?] from existing ingredients or create [#?] new ingredients
+        #update,
+        #edit
+        #index
+      - forms & controllers should accomodate selecting 5 ingredients from existing ingredients or create 1 new ingredient when creating a new recipe
 
  Needs to Happen:
  - Create/Read/Update/Delete Ingredients
