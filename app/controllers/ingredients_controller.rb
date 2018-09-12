@@ -24,9 +24,14 @@ class IngredientsController < ApplicationController
 
 
   def update
-    # you're where we get when we submit and edit form! not where we direct the request for the update form 
     @ingredient = Ingredient.find(params[:id])
-    raise params.inspect
+    @ingredient.update(ingredients_params)
+    if @ingredient.save
+      #maybe add success message
+      redirect_to "/ingredients/#{@ingredient.id}"
+    else
+      render "edit"
+    end
   end
 
   private
