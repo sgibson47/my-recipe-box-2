@@ -8,6 +8,16 @@
   
 
   Name: <%= f.text_field :name%><br>
+
+  Select Ingredients:<br>
+  <%= f.collection_select :ingredients, Ingredient.all, :id, :name %><br>
+  <%= f.collection_select :ingredients, Ingredient.all, :id, :name %><br>
+  <%= f.collection_select :ingredients, Ingredient.all, :id, :name %><br>
+  <%= f.collection_select :ingredients, Ingredient.all, :id, :name %><br>
+  <%= f.collection_select :ingredients, Ingredient.all, :id, :name %><br>
+
+
+
   Instructions: 
   <%= f.text_area :instructions, placeholder: "1. Mix dry ingredients, 2. Mix wet ingredients, . . . "%><br>
   <%=f.submit%>
