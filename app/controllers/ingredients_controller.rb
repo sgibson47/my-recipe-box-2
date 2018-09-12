@@ -19,12 +19,14 @@ class IngredientsController < ApplicationController
   end
 
   def edit
+    @ingredient = Ingredient.find(params[:id])
   end
 
 
   def update
     # you're where we get when we submit and edit form! not where we direct the request for the update form 
     @ingredient = Ingredient.find(params[:id])
+    raise params.inspect
   end
 
   private
