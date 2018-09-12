@@ -1,3 +1,8 @@
 <h1><%=@ingredient.name%></h1>
 
 <p>Serving Size: <%="#{@ingredient.serving_size_number} #{@ingredient.serving_size_unit}"%>
+
+<br>
+<%=link_to "Update this Ingredient", "/ingredients/#{@ingredient.id}", method: :patch%><br>
+<!--what I thoguht would redirect to patch /ingredients/:id, but it's acting like the http verb invoked is GET-->
+<%=link_to "Delete this Ingredient", "/ingredients/#{@ingredient.id}", method: :delete%>
