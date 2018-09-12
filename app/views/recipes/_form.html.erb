@@ -1,3 +1,14 @@
 <%=form_for(@recipe) do |f|%>
+  <% if f.object.errors.any? %>
+    <% f.object.errors.full_messages.each do |message|%>
+      <%= message %><br>
+    <%end%>
+    <br>
+  <%end%>
+  
+
+  Name: <%= f.text_field :name%><br>
+  Instructions: 
+  <%= f.text_area :instructions, placeholder: "1. Mix dry ingredients, 2. Mix wet ingredients, . . . "%><br>
   <%=f.submit%>
 <%end%>
