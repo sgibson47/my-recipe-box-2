@@ -4,5 +4,7 @@
 
 <br>
 <%=link_to "Update this Ingredient", "/ingredients/#{@ingredient.id}", method: :patch%><br>
-<!--what I thoguht would redirect to patch /ingredients/:id, but it's acting like the http verb invoked is GET-->
+<!--what I thoguht would redirect to patch /ingredients/:id, but it's acting like the http verb invoked is GET, nope it's working! I guess since there wasn't anything in the update action it automatically ? rendered the show page? redirected to the show path?  
+  rails guide: "this controller will render the edit.html.erb"
+but I don't have an edit view . . . let's move on. -->
 <%=link_to "Delete this Ingredient", "/ingredients/#{@ingredient.id}", method: :delete%>

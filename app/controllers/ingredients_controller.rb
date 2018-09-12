@@ -19,6 +19,7 @@ class IngredientsController < ApplicationController
   end
 
   def update
+    raise params.inspect
   end
 
   private
