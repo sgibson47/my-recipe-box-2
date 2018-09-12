@@ -26,12 +26,17 @@ ToDo:
         R: get /ingredients/:id, 
         U: get /ingredients/:id/[edit? update?], U: post /ingredients/:id, 
         D: delete /ingredients/:id
-      - Ingredients Controller
+      X- Ingredients Controller
       - controller actions 
         #new, #create, 
         #show, 
         #destroy, 
         #update, [? #edit?]
+      - Views
+        - new
+        - form
+        - show
+        - update/edit
     7. CRUD Basic Recipes
       - routes
         C: get /recipes/new, C: post /recipes, 

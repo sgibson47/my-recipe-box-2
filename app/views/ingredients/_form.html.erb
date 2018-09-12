@@ -8,6 +8,8 @@
   
 
   Name: <%= f.text_field :name%><br>
-  Serving Size: <!-- --> 
+  Serving Size: 
+  <%= f.number_field :serving_size_number, placeholder: "number (e.g. 3)"%> <%= f.text_field :serving_size_unit, placeholder: "unit (e.g. cup)"%>
+  <br>
   <%= f.submit %>
 <%end%>
