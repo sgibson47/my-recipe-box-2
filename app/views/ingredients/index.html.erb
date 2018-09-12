@@ -1,0 +1,6 @@
+<h1>All the Ingredients!</h1>
+<% @ingredients.each do |i| %>
+  <%= i.name%><br>
+  <p>Serving Size: <%="#{i.serving_size_number} #{i.serving_size_unit}"%></p><br>
+  <!--when you settle on how you want to display the serving size, make a helper method to do it and then call that here; make sure it displays the proper word for the unit, singular or plural-->
+<%end%>

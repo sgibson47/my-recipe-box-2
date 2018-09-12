@@ -2,6 +2,10 @@ class IngredientsController < ApplicationController
   before_action :require_logged_in
   before_action :find_ingredient_by_params_id, only: [:update, :destroy, :edit, :show]
 
+  def index
+    @ingredients = Ingredient.all
+  end
+
   def new
     @ingredient = Ingredient.new
   end
