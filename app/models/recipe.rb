@@ -6,4 +6,8 @@ class Recipe < ApplicationRecord
 
   validates :name, presence: true
   validates :name, uniqueness: true 
+
+  def amounts_attributes=(attr_hash)
+    #need to avoid duplicative amounts in a recipe, so build custom setter
+  end
 end
