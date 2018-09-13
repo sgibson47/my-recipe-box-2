@@ -11,11 +11,13 @@ class RecipesController < ApplicationController
     @recipe.amounts.build
     @recipe.amounts.build
     @recipe.amounts.build
+    @recipe.amounts.build
+    @recipe.amounts.build
   end
 
   def create
-    raise params.inspect
     @recipe = Recipe.new(recipes_params)
+    @recipe.user = current_user
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
@@ -52,6 +54,9 @@ class RecipesController < ApplicationController
   end
 
   def recipes_params
-    params.require(:recipe).permit(:name, :instructions)
+    params.require(:recipe).permit(:name, :instructions, amounts_attributes: [
+      :ingredient_id,
+      :servings_per_recipe
+    ])
   end
 end
