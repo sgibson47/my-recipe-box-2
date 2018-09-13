@@ -36,6 +36,7 @@ class RecipesController < ApplicationController
       #maybe add success message
       redirect_to "/recipes/#{@recipe.id}"
     else
+      build_up_to_5_amount_stubs(@recipe)
       render "edit"
     end
   end
@@ -55,7 +56,8 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(:name, :instructions, amounts_attributes: [
       :id,
       :ingredient_id,
-      :servings_per_recipe
+      :servings_per_recipe,
+      :_destroy
     ])
   end
 

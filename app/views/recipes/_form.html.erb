@@ -14,23 +14,9 @@
     <%= amnt.label :ingredient%>
     <%= amnt.collection_select :ingredient_id, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %>
     <%= amnt.label :servings_per_recipe%>
-    <%= amnt.number_field :servings_per_recipe%><br>
+    <%= amnt.number_field :servings_per_recipe%> Delete: <%= amnt.check_box :_destroy %><br>
   <%end%>
-<!--
-  
-  <%= f.collection_select :amount_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
-  <%= f.collection_select :amount_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
-  <br>
-  
-  Or Create a New Ingredient to use in this Recipe:<br>
-  <%= f.fields_for :ingredients do |i|%>
-    <%=i.label :name%>
-    <%=i.text_field :name%>
-    <br>
-    <%=i.label :serving_size%> 
-    <%= i.number_field :serving_size_number, placeholder: "number (e.g. 3)"%> <%= i.text_field :serving_size_unit, placeholder: "unit (e.g. cup)"%>
-  <%end%>
--->
+
   <br><br>
 
   Instructions: <br>
