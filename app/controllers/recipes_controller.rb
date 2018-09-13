@@ -17,6 +17,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
+      build_5_amount_stubs if @recipe.amounts.empty?
       render "new"
     end
   end
