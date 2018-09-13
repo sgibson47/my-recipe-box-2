@@ -8,7 +8,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    build_5_amount_stubs
+    build_up_to_5_amount_stubs(@recipe)
   end
 
   def create
@@ -17,7 +17,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
-      build_5_amount_stubs if @recipe.amounts.empty?
+      build_up_to_5_amount_stubs(@recipe)
       render "new"
     end
   end
@@ -26,6 +26,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    build_up_to_5_amount_stubs(@recipe)
   end
 
 
