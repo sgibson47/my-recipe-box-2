@@ -8,11 +8,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @recipe.amounts.build
-    @recipe.amounts.build
-    @recipe.amounts.build
-    @recipe.amounts.build
-    @recipe.amounts.build
+    build_5_amount_stubs
   end
 
   def create
@@ -58,5 +54,13 @@ class RecipesController < ApplicationController
       :ingredient_id,
       :servings_per_recipe
     ])
+  end
+
+  def build_5_amount_stubs
+    @recipe.amounts.build
+    @recipe.amounts.build
+    @recipe.amounts.build
+    @recipe.amounts.build
+    @recipe.amounts.build
   end
 end
