@@ -58,11 +58,11 @@ class RecipesController < ApplicationController
     ])
   end
 
-  def build_5_amount_stubs
-    @recipe.amounts.build
-    @recipe.amounts.build
-    @recipe.amounts.build
-    @recipe.amounts.build
-    @recipe.amounts.build
+  def build_up_to_5_amount_stubs(recipe)
+    count = recipe.amounts.count
+    num_to_build = 5 - count
+    num_to_build.times do
+      recipe.amounts.build
+    end
   end
 end
