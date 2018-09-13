@@ -1,1 +1,9 @@
 <h1><%=@recipe.name%>'s Page</h1>
+
+<h3>Ingredients:</h3>
+<% @recipe.amounts.each do |amnt|%>
+  <%= amnt.ingredient.name%><br>
+  Serving Size: <%="#{amnt.ingredient.serving_size_number} #{amnt.ingredient.serving_size_unit}"%><br>
+  Servings per recipe: <%= amnt.servings_per_recipe%><br>
+  <br>
+<%end%>
