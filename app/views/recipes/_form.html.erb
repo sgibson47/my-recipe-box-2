@@ -10,14 +10,13 @@
   Name: <%= f.text_field :name%><br>
 
   Select Ingredients:<br>
-  <%= f.collection_select :ingredients, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
+  <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
   <!--want form to outout something like recipe[ingredient_ids][ids of selected ingredients]-->
-  <!--right now nothing comes through in the params hash when I select existing ingredients-->
-  <!-- I'm getting recipe[ingredients][nothing]-->
-  <%= f.collection_select :ingredients, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
-  <%= f.collection_select :ingredients, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
-  <%= f.collection_select :ingredients, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
-  <%= f.collection_select :ingredients, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
+  <!-- Now "recipe"=>{ . . . "ingredient_ids"=>"" . . . } after selecting 2 ingredients-->
+  <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
+  <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
+  <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
+  <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
 
 
 
