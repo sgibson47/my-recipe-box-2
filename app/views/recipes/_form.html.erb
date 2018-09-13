@@ -10,11 +10,11 @@
   Name: <%= f.text_field :name%><br>
   <br>
   Ingredients:<br>
-  <%= fields_for :amounts do |amnt| %>
+  <%= f.fields_for :amounts do |amnt| %>
     <%= amnt.label :ingredient%>
-    <%= amnt.collection_select :ingredient_id, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
+    <%= amnt.collection_select :ingredient_id, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %>
     <%= amnt.label :servings_per_recipe%>
-    <%= amnt.number_field :servings_per_recipe%>
+    <%= amnt.number_field :servings_per_recipe%><br>
   <%end%>
 <!--
   
