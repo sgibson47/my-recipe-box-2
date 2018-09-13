@@ -8,19 +8,33 @@
   
 
   Name: <%= f.text_field :name%><br>
+  <br>
+  Ingredients:<br>
+  <%= fields_for :amounts do |amnt| %>
+    <%= amnt.label :ingredient%>
+    <%= amnt.collection_select :ingredient_id, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
+    <%= amnt.label :servings_per_recipe%>
+    <%= amnt.number_field :servings_per_recipe%>
+  <%end%>
+<!--
+  
+  <%= f.collection_select :amount_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
+  <%= f.collection_select :amount_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
+  <br>
+  
+  Or Create a New Ingredient to use in this Recipe:<br>
+  <%= f.fields_for :ingredients do |i|%>
+    <%=i.label :name%>
+    <%=i.text_field :name%>
+    <br>
+    <%=i.label :serving_size%> 
+    <%= i.number_field :serving_size_number, placeholder: "number (e.g. 3)"%> <%= i.text_field :serving_size_unit, placeholder: "unit (e.g. cup)"%>
+  <%end%>
+-->
+  <br><br>
 
-  Select Ingredients:<br>
-  <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
-  <!--want form to outout something like recipe[ingredient_ids][ids of selected ingredients]-->
-  <!-- Now "recipe"=>{ . . . "ingredient_ids"=>"" . . . } after selecting 2 ingredients-->
-  <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
-  <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
-  <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
-  <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %><br>
-
-
-
-  Instructions: 
+  Instructions: <br>
   <%= f.text_area :instructions, placeholder: "1. Mix dry ingredients, 2. Mix wet ingredients, . . . "%><br>
+  <br>
   <%=f.submit%>
 <%end%>

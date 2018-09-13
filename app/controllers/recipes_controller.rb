@@ -8,6 +8,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    5.times { @recipe.amounts.build }
   end
 
   def create
