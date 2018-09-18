@@ -1,0 +1,21 @@
+<%=form_for(@user)do |f|%>
+  <% if f.object.errors.any? %>
+    <% f.object.errors.full_messages.each do |message|%>
+      <%= message %><br>
+    <%end%>
+    <br>
+  <%end%>
+  
+  <%= f.fields_for :makings do |m| %>
+    <%= m.label :recipe%>
+    <%= m.collection_select :recipe_id, Recipe.all, :id, :name %>
+    <%= m.label :rating%>
+    <%= m.number_field :rating%>
+    <%= m.label :notes%>
+    <%= m.number_field :notes%>
+  <%end%>
+  
+  <br>
+  <br>
+  <%=f.submit "Submit Making Info"%>
+<%end%>
