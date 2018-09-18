@@ -61,6 +61,15 @@ ToDo:
       X - add makings model
       X- nested new form for a making
         /users/:id/makings/new
+    10. class level ActiveRecord scope methods
+      - recipes by rating
+      - recipes by ingredient
+      - recipes alphabetical
+    11. OmniAuth
+    12. Connect eveything
+      - add links to allow a user to navigate around site
+    13. add protections
+      - only the user who created a recipe or a making should be able to edit or delete that record
 
 
 
