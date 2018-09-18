@@ -39,7 +39,7 @@ ToDo:
         X - form
         X- show
         X- edit
-    7. CRUD Basic Recipes
+    X7. CRUD Basic Recipes
       X - routes
         C: get /recipes/new, C: post /recipes, 
         R: get /recipes/:id, U: get /recipes/:id/edit, 
@@ -53,7 +53,8 @@ ToDo:
         #edit
         #index
       X - forms & controllers should accomodate selecting 5 ingredients from existing ingredients or 
-      - create 1 new ingredient when creating a new recipe
+       - create 1 new ingredient when creating a new recipe
+       nope this is taking too much time, move it to the extras section and add a link to new ingredients to recipes/new in a side bar or below ingredients list 
 
  Needs to Happen:
  - Create/Read/Update/Delete Ingredients
