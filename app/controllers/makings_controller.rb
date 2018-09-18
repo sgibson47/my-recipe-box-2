@@ -1,4 +1,5 @@
 class MakingsController < ApplicationController
+  before_action :find_making_by_params_id, only: [:update, :destroy, :edit, :show]
 
   def index
     if params[:user_id]
@@ -31,6 +32,10 @@ class MakingsController < ApplicationController
 
   def makings_params
     params.require(:making).permit(:recipe_id, :rating, :notes)
+  end
+
+  def find_making_by_params_id
+    @making = Making.find(params[:id])
   end
 
 end
