@@ -57,9 +57,9 @@ ToDo:
        nope this is taking too much time, move it to the extras section and add a link to new ingredients to recipes/new in a side bar or below ingredients list 
     X8. Nested route show or index
         X users/2/recipes - index
-    9. nested route "new" form
+    X9. nested route "new" form
       X - add makings model
-      - nested new form for a making
+      X- nested new form for a making
         /users/:id/makings/new
 
 
