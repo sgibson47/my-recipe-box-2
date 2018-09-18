@@ -3,7 +3,11 @@ class RecipesController < ApplicationController
   before_action :find_recipe_by_params_id, only: [:update, :destroy, :edit, :show]
 
   def index
-    @recipes = Recipe.all
+    if params[:user_id]
+      @recipes = User.find(params[:user_id]).recipes
+    else
+      @recipes = Recipe.all
+    end
   end
 
   def new
