@@ -9,6 +9,7 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     build_up_to_5_amount_stubs(@recipe)
+    @ingredient = Ingredient.new
   end
 
   def create
