@@ -21,7 +21,7 @@ class MakingsController < ApplicationController
     @making = Making.new(makings_params)
     @making.user = User.find(params[:user_id])
     if @making.save
-      redirect_to "/users/#{@making.user.id}/makings/#{@making.id}"
+      redirect_to "/makings/#{@making.id}"
     else
       render "new"
     end
