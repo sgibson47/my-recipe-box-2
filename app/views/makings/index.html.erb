@@ -1,0 +1,8 @@
+<h1>Makings Index</h1>
+
+<%@makings.each do |m|%>
+  <h4><%=m.recipe.name%></h4>
+  Made by: <%=m.user.name%><br>
+  Rating:<%=m.rating%> stars <br>
+  Notes:<%=m.notes%><br>
+<%end%>
