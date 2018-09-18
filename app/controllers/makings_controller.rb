@@ -31,11 +31,17 @@ class MakingsController < ApplicationController
   end
 
   def update
-    
+    @making.update(makings_params)
+    if @making.save
+      redirect_to "/makings/#{@making.id}"
+    else
+      render "edit"
+    end
   end
 
   def destroy
-    
+    @making.destroy
+    redirect_to "/users/#{current_user.id}"
   end
 
   private 
