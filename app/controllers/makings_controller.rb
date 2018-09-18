@@ -10,7 +10,6 @@ class MakingsController < ApplicationController
   end
 
   def show
-    @making = Making.find(params[:id])
   end
 
   def new
