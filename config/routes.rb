@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'welcome#home'
 
   resources :users, only: [:new, :create, :show, :delete] do 
-    resources :recipes, only: [:index, :show, :edit, :update, :destroy]
+    resources :recipes, only: [:index]
   end
 
   get '/signin', to: 'sessions#new'
