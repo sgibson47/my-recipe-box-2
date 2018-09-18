@@ -40,12 +40,12 @@ ToDo:
         X- show
         X- edit
     7. CRUD Basic Recipes
-      - routes
+      X - routes
         C: get /recipes/new, C: post /recipes, 
         R: get /recipes/:id, U: get /recipes/:id/edit, 
         U: patch /recipes/:id, 
         D: delete /recipes/:id
-      - controller actions 
+      X- controller actions 
         #new, #create, 
         #show, 
         #destroy, 
