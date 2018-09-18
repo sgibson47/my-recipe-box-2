@@ -16,14 +16,6 @@
     <%= amnt.label :servings_per_recipe%>
     <%= amnt.number_field :servings_per_recipe%> Delete: <%= amnt.check_box :_destroy %><br>
   <%end%>
-
-  <br>
-  Or, create a new Ingredient to Use in this Recipe:<br>
-  <%= f.fields_for :ingredients do |f| %>
-    Name: <%= f.text_field :name%><br>
-    Serving Size: 
-    <%= f.number_field :serving_size_number, placeholder: "number (e.g. 3)"%> <%= f.text_field :serving_size_unit, placeholder: "unit (e.g. cup)"%>
-  <%end%>
   
   <br>
   <br>
