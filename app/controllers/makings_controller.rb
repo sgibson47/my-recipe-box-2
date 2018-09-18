@@ -8,4 +8,8 @@ class MakingsController < ApplicationController
     end
   end
 
+  def show
+    @making = Making.find(params[:id])
+  end
+
 end
