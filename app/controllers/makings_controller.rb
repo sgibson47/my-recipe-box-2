@@ -14,9 +14,23 @@ class MakingsController < ApplicationController
 
   def new
     @user = current_user
+    @making = @user.makings.build
   end
 
   def create
+    @making = Making.new(makings_params)
+    @making.user = User.find(params[:user_id])
+    if @making.save
+      redirect_to "/users/#{@making.user.id}/makings/#{@making.id}"
+    else
+      render "new"
+    end
+  end
+
+  private 
+
+  def makings_params
+    params.require(:making).permit(:recipe_id, :rating, :notes)
   end
 
 end
