@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_11_161301) do
+ActiveRecord::Schema.define(version: 2018_09_18_175808) do
 
   create_table "amounts", force: :cascade do |t|
     t.integer "ingredient_id"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 2018_09_11_161301) do
     t.string "serving_size_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "makings", force: :cascade do |t|
+    t.integer "rating"
+    t.string "notes"
+    t.integer "user_id"
+    t.integer "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_makings_on_recipe_id"
+    t.index ["user_id"], name: "index_makings_on_user_id"
   end
 
   create_table "recipes", force: :cascade do |t|
