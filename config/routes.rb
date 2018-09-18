@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show, :delete] do 
     resources :recipes, only: [:index]
+    resources :makings
   end
 
   get '/signin', to: 'sessions#new'
