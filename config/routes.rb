@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'welcome#home'
 
-  resources :users, only: [:new, :create, :show, :delete]
+  resources :users, only: [:new, :create, :show, :delete] do 
+    resources :recipes, only: [:new, :create, :show, :edit, :update, :destroy]
+  end
 
   get '/signin', to: 'sessions#new'
 
@@ -11,5 +13,5 @@ Rails.application.routes.draw do
 
   resources :ingredients
 
-  resources :recipes
+  resources :recipes, only: [:index]
 end

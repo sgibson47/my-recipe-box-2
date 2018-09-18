@@ -55,6 +55,19 @@ ToDo:
       X - forms & controllers should accomodate selecting 5 ingredients from existing ingredients or 
        - create 1 new ingredient when creating a new recipe
        nope this is taking too much time, move it to the extras section and add a link to new ingredients to recipes/new in a side bar or below ingredients list 
+    8. Nested stuff
+      - nested route show or index
+        users/2/recipes
+      - nested route "new" form
+        - /users/2/recipes -- at bottom? in side bar? of index of user 2's recipes render recipe form?
+
+      nested route for new recipe makes sense because a recipe belongs to the user that creates it
+        - make new recipe into nested new -- /users/1/recipes/new instead of /recipes/new
+        - makes sense to nest udate and delete functions too? Sure
+      but we still want an index of all the recipes so that users can access recipes created by any user
+        - keep /recipes 
+        - add hard coded route to users/:id/recipes to display an index of a single user's recipes
+
 
  Needs to Happen:
  - Create/Read/Update/Delete Ingredients
