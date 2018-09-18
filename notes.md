@@ -52,7 +52,8 @@ ToDo:
         #update,
         #edit
         #index
-      - forms & controllers should accomodate selecting 5 ingredients from existing ingredients or create 1 new ingredient when creating a new recipe
+      X - forms & controllers should accomodate selecting 5 ingredients from existing ingredients or 
+      - create 1 new ingredient when creating a new recipe
 
  Needs to Happen:
  - Create/Read/Update/Delete Ingredients
