@@ -9,7 +9,7 @@
 
   Name: <%= f.text_field :name%><br>
   <br>
-  Ingredients:<br>
+  Select Ingredients:<br>
   <%= f.fields_for :amounts do |amnt| %>
     <%= amnt.label :ingredient%>
     <%= amnt.collection_select :ingredient_id, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %>
@@ -17,7 +17,11 @@
     <%= amnt.number_field :servings_per_recipe%> Delete: <%= amnt.check_box :_destroy %><br>
   <%end%>
 
-  <br><br>
+  <br>
+  Or, create a new Ingredient to Use in this Recipe:
+  
+  
+  <br>
 
   Instructions: <br>
   <%= f.text_area :instructions, placeholder: "1. Mix dry ingredients, 2. Mix wet ingredients, . . . "%><br>
