@@ -1,4 +1,5 @@
 class MakingsController < ApplicationController
+  before_action :redirect_if_not_logged_in
   before_action :find_making_by_params_id, only: [:update, :destroy, :edit, :show]
 
   def index
