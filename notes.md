@@ -126,7 +126,7 @@ ToDo:
     - call before sessions#new and users#new
 
   redirect_if_not_logged_in
-    - redirect to '/signin' with flash message telling user to log in or create an account to access the requested page
+    - redirect to '/' with flash message telling user to log in or create an account to access the requested page
     - call before everything except sessions#new and users#new
 
   redirect_if_belongs_to_another_user

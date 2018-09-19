@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     current_user.id != nil
   end
 
-  def require_logged_in
+  def redirect_if_not_logged_in
     return redirect_to('/') unless logged_in?
   end 
 end
