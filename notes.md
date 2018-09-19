@@ -107,11 +107,71 @@ ToDo:
     - Add picture to ingredients
     - cleaner way to take in instructions? maybe multiple strings that each descripe a step and then printing them in an ordered list to create an instructions section of a recipe show page. Is that another model? Instructions belong to recipes and recipes have many instructions?
 
-  - Add Making model to track rating, notes, and photo re each attempt
-  - Add class methods to sort recipes by avg ranking
+  Layout 
+    - not logged in
+      - nothing!
+    - logged in Nav bar
+      - Greeting -- notice of which account is signed in
+      - link/button to index, /recipes
+      - link/button to current user's show page, /users/#{current_user.id}
+      - link/button to current user's recipe index, /users/#{current_user.id}/recipes
+      - link to records of what you made, /users/#{current_user.id}/makings
+      - link/button to create a recipe, /recipes/new
+      - link/button to create an ingredient, /ingredients/new
+      - link/button to create a making, /users/#{current_user.id}/makings/new
+      - link/button to log out, delete "/signout"
+  
+  redirect_if_logged_in
+    - redirect to user's show page with flash message telling them to log out first to access the requested page
+    - call before sessions#new and users#new
 
+  redirect_if_not_logged_in
+    - redirect to '/signin' with flash message telling user to log in or create an account to access the requested page
+    - call before everything except sessions#new and users#new
+
+  redirect_if_belongs_to_another_user
+    - should redirect to the current_user's show page if the resource doesn't belong to that user
+    - use params[:id] or params[:user_id] && current_user.id to verify that the resource belongs to current_user 
+    - call before users#show, recipes#edit, recipes#destroy, makings#edit, makings#destroy
+
+  For those not logged in
+    - '/' "welcome#home"
+      - Greeting
+      - link/button to with email
+      - link/button to login with fb
+      - link/button to sign up
+      [elminiate and always redirect_to "users/#{current_user.id}" if logged_in? OR redirect_to "/sigin" if !logged_in?]
+    
+    - '/signin' "session#new"
+      - Greeting
+      - form to login with email 
+      - link/button to login with fb
+      - link/button to sign up
+    
+    - '/users/new' "users#new"
+      - form to create a new user
+      - link/button to login with fb
+      - link/button to with email 
+
+  Logged_in
+    - 'users/:id' "users#show"
+      - greeting
+      - any content?
+        - recently created recipes
+        - links to user's top # recipes
+
+       
+
+  X - Add Making model to track rating, notes, and photo re each attempt
+
+  - Add class methods to sort recipes by avg ranking
   - Add model to hold recipe types? Breakfast, Lunch, Dinner etc.
   - Add model to hold recipe categories? Paleo, Keto, Gluten Free, Vegetarian, Vegan 
+
+  re name makings to trys 
+  yeah, makes way more sense to ask someone if they've tried a recipe and then how it went?
+  ooo add difficulty rating to too each making/try
+
 
 
 
