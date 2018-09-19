@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
   def redirect_if_not_logged_in
     return redirect_to('/') unless logged_in?
   end 
+
+  def redirect_if_logged_in
+    return redirect_to("/users/#{current_user.id}") if logged_in?
+  end 
 end
