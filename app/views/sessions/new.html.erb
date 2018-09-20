@@ -1,4 +1,7 @@
 <h1>Login!</h1>
+
+<!--<%= link_to('Login with Facebook', '/auth/facebook') %> -->
+
 <%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do%>
   Email: <%= text_field_tag(:email) %><br>
   Password: <%= password_field_tag(:password) %><br>

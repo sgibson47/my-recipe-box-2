@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_18_175808) do
+ActiveRecord::Schema.define(version: 2018_09_19_223231) do
 
   create_table "amounts", force: :cascade do |t|
     t.integer "ingredient_id"
@@ -55,6 +55,10 @@ ActiveRecord::Schema.define(version: 2018_09_18_175808) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "uid"
+    t.string "provider"
+    t.string "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
 end

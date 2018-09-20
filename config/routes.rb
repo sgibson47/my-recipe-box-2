@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   resources :ingredients
 
   resources :recipes
+
+  get '/auth/facebook/callback' => 'sessions#create'
+  get 'auth/failure', to: redirect('/signin')
 end
