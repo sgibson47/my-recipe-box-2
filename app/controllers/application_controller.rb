@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
   def redirect_if_logged_in
     return redirect_to("/users/#{current_user.id}") if logged_in?
   end 
+
+  def belongs_to_current_user?
+    params[:user_id] == current_user.id
+  end
 end
