@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.1'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'dotenv-rails'
 
 # Used to mock an https url
 gem 'thin'
