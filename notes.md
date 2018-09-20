@@ -68,7 +68,7 @@ ToDo:
     X11. OmniAuth
     12. Connect eveything
       - add links to allow a user to navigate around site
-    13. add protections
+    X 13. add protections
       - only the user who created a recipe or a making should be able to edit or delete that record
 
 
