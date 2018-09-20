@@ -11,9 +11,11 @@ class SessionsController < ApplicationController
       @user = User.find_or_create_by(email: auth['info']['email']) do |u|
         u.name = auth['info']['name']
         u.email = auth['info']['email']
+        u.password = SecureRandom.urlsafe_base64
       end
-        session[:user_id] = @user.id
-        redirect_to user_path(@user)
+      @user.save
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
     else
       @user = User.find_by(email: params[:email])
       if @user && @user.authenticate(params[:password])
