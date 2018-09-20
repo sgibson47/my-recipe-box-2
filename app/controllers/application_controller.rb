@@ -18,11 +18,12 @@ class ApplicationController < ActionController::Base
     return redirect_to("/users/#{current_user.id}") if logged_in?
   end 
 
-  def belongs_to_current_user?
-    params[:user_id] == current_user.id
+  def recipe_belongs_to_current_user?
+    recipe = Recipe.find_by(params[:id])
+    return recipe.user.id == current_user.id
   end
 
-  def redirect_if_belongs_to_another_user
-    return redirect_to("/users/#{current_user.id}") unless belongs_to_current_user?
+  def redirect_if_recipe_belongs_to_another_user
+    return redirect_to("/users/#{current_user.id}") unless recipe_belongs_to_current_user?
   end
 end
