@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_if_recipe_belongs_to_another_user
-    flash[:message] = "You can't edit or delete other user's recipes."
+    flash[:message] = "You can't edit or delete another user's recipes."
     return redirect_to("/users/#{current_user.id}") unless recipe_belongs_to_current_user?
   end
 end
