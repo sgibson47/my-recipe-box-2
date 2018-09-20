@@ -4,5 +4,6 @@
   Rating:<%=@making.rating%> stars <br>
   Notes:<%=@making.notes%><br>
 
-  
+  <%=link_to "Edit", edit_making_path(@making) %>
+  <br>
   <%=link_to "Delete", making_path(@making), method: :delete %>
