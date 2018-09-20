@@ -1,6 +1,6 @@
 <h1>Login!</h1>
 
-<!--<%= link_to('Login with Facebook', '/auth/facebook') %> -->
+<%= link_to('Log in with Facebook!', '/auth/facebook') %>
 
 <%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do%>
   Email: <%= text_field_tag(:email) %><br>
