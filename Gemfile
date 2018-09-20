@@ -10,6 +10,9 @@ gem 'rails', '~> 5.2.1'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+# Used to mock an https url
+gem 'thin'
+
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
