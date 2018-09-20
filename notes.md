@@ -65,7 +65,7 @@ ToDo:
       - recipes by rating
       - recipes by ingredient
       - recipes alphabetical
-    11. OmniAuth
+    X11. OmniAuth
     12. Connect eveything
       - add links to allow a user to navigate around site
     13. add protections
