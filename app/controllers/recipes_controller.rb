@@ -1,7 +1,8 @@
 class RecipesController < ApplicationController
   before_action :redirect_if_not_logged_in
   before_action :find_recipe_by_params_id, only: [:update, :destroy, :edit, :show]
-
+  before_action :redirect_if_recipe_belongs_to_another_user, only: [:update, :destroy, :edit]
+  
   def index
     if params[:user_id]
       @recipes = User.find(params[:user_id]).recipes
