@@ -13,7 +13,7 @@
     <% if logged_in? %>
       <h3>You're logged in as: <%=current_user.name %></h3>
       <br>
-      <div class="col-9">
+      <div class="col-8">
         <div class="col-1-of-8">
           <%=link_to "Your Page", "/users/#{current_user.id}"%>
         </div>
