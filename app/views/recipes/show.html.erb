@@ -10,3 +10,7 @@
 
 <h3>Instructions</h3>
 <p><%=@recipe.instructions%></p>
+
+<%=link_to "Edit", edit_recipe_path(@recipe) %>
+  <br>
+<%=link_to "Delete", recipe_path(@recipe), method: :delete %>
