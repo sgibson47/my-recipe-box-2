@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :makings
   accepts_nested_attributes_for :makings, reject_if: :all_blank, :allow_destroy => true
 
+  has_many :ingredients, :through => :recipes
+
   validates :name, :email, presence: true
   validates :password, confirmation: true
   validates :email, uniqueness: true
