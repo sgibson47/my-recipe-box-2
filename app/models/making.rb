@@ -6,5 +6,5 @@ class Making < ApplicationRecord
     order(:created_at).limit(5)
   end
 
-  
+
 end
