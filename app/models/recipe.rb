@@ -13,10 +13,9 @@ class Recipe < ApplicationRecord
     order(:created_at).limit(5)
   end
 
-  def avg_rating
-    makings.average("rating")
+  def times_made
+    self.makings.count
   end
 
-  
 
 end
