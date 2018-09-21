@@ -8,4 +8,11 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true 
   
+
+  def self.five_most_recent_recipes
+    order(:created_at).limit(5)
+  end
+
+  
+
 end

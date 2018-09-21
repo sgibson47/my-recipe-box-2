@@ -8,15 +8,18 @@ class User < ApplicationRecord
   validates :password, confirmation: true
   validates :email, uniqueness: true
 
-  # def self.from_omniauth(auth)
-  #   where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
-  #     user.provider = auth.provider
-  #     user.uid = auth.uid
-  #     user.name = auth.info.name
-  #     user.email = auth.info.email
-  #     user.oauth_token = auth.credentials.token
-  #     user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-  #     user.save!
-  #   end
-  # end 
+  def five_most_recent_user_recipes
+    recipes.order(:created_at).limit(5)
+  end 
+
+  def top_ingredients
+    ingredients 
+
+    #grrrr ingredients & users aren't connected!!
+    # I could iterate over each recipe, and 
+    # store its ingredients in a new collection and 
+    # count number of times each ingredient
+    # ewwww
+    #Help me, ActiveRecord. You're my only hope. 
+  end
 end
