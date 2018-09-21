@@ -66,7 +66,7 @@ ToDo:
       - recipes by ingredient
       - recipes alphabetical
     X11. OmniAuth
-    12. Connect eveything
+    X 12. Connect eveything
       - add links to allow a user to navigate around site
     X 13. add protections
       - only the user who created a recipe or a making should be able to edit or delete that record

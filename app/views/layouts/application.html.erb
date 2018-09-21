@@ -12,7 +12,6 @@
   <body>
     <% if logged_in? %>
       <div class="logged-in-navbar">
-        
         <div class="greeting">
           You're logged in as: <%=current_user.name %>
         </div><!--greeting-->
@@ -58,5 +57,8 @@
       <div id="alert"><%= flash[:message] %></div>
     <% end %>
     <%= yield %>
+    <div class="footer">
+        
+    </div><!--footer-->
   </body>
 </html>
