@@ -12,8 +12,13 @@
   <body>
     <% if logged_in? %>
       <div class="logged-in-navbar">
-        <p>You're logged in as: <%=current_user.name %></p>
-        <!-- <div class="col-all-8"> -->
+        
+        <div class="greeting">
+          You're logged in as: <%=current_user.name %>
+        </div><!--greeting-->
+        <div class="title">
+          My Recipe Box
+        </div><!--title-->
           <div class="col-not-8">
             <%=link_to "Your Page", "/users/#{current_user.id}"%>
           </div><!--col-not-8-->
@@ -38,7 +43,6 @@
           <div class="col-8">
             <%=link_to "Log Out", '/signout', method: :delete %>
           </div><!--col-8-->
-        <!-- </div>col-all-8 -->
       </div><!--logged-in-navbar-->
     <% else %>
       <br>
