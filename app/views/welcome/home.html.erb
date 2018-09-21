@@ -6,27 +6,19 @@
   <div class="title">
     My Recipe Box
   </div> <!--title-->
-
-  <div class="col-3">
-    <div class="col-1-of-3">
-      hello,
-    </div> <!--col-1-of-3-->
-    <div class="col-2-of-3">
-      anybody
-    </div> <!--col-2-of-3-->
-    <div class="col-3-of-3">
-      home?
-    </div> <!--col-3-of-3-->
-  </div> <!--col-3-->
-
   <br>
+
+  <div class="button-holder">
+    <%= link_to 'Log In with Your Email', '/sigin', class: "button" %>
+    <br>
+    <%= link_to 'Log In with Facbook', '/auth/facebook' %>
+    <br>
+    <%= link_to 'Create an Account', '/users/new' %>
+  </div> <!--button-holder-->
 
 
   <div class="blurb">
-    <p>
-        Create an account with your email or log in with facebook 
-        <br>
-        to start storing your favorite recipes in My Recipe Box.
-    </p>
+    Create an account with your email or log in with facebook 
+    to start storing your favorite recipes in My Recipe Box.
   </div> <!--blurb-->
 </div> <!--home-page-->
