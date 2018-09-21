@@ -11,37 +11,35 @@
 
   <body>
     <% if logged_in? %>
-      <h3>You're logged in as: <%=current_user.name %></h3>
-      <br>
-      <div class="col-8">
-        <div class="col-1-of-8">
-          <%=link_to "Your Page", "/users/#{current_user.id}"%>
-        </div>
-        <div class="col-2-of-8">
-          <a href="/recipes">All Recipes</a>
-        </div>
-        <div class="col-3-of-8">
-          <%=link_to "Your Recipes", "/users/#{current_user.id}/recipes"%>
-        </div>
-        <div class="col-4-of-8">
-          <%=link_to "What You've Made", "/users/#{current_user.id}/makings"%>
-        </div>
-        <div class="col-5-of-8">
-          <a href="/recipes/new">Create A Recipe</a>
-        </div>
-        <div class="col-6-of-8">
-          <a href="/ingredients/new">Create an Ingredient</a>
-        </div>
-        <div class="col-7-of-8">
-          <%=link_to "Create A Making", "/users/#{current_user.id}/makings/new"%>
-        </div>
-        <div class="col-8-of-8">
-          <%=link_to "Log Out", '/signout', method: :delete %>
-        </div>
-      </div>
-      <br>
-      <br>
-      <br>
+      <div class="logged-in-navbar">
+        <p>You're logged in as: <%=current_user.name %></p>
+        <div class="col-8">
+          <div class="col-1-of-8">
+            <%=link_to "Your Page", "/users/#{current_user.id}"%>
+          </div><!--col-1-of-8-->
+          <div class="col-2-of-8">
+            <a href="/recipes">All Recipes</a>
+          </div><!--col-2-of-8-->
+          <div class="col-3-of-8">
+            <%=link_to "Your Recipes", "/users/#{current_user.id}/recipes"%><!--col-3-of-8-->
+          </div><!--"logged-in-navbar"-->
+          <div class="col-4-of-8">
+            <%=link_to "What You've Made", "/users/#{current_user.id}/makings"%>
+          </div><!--col-4-of-8-->
+          <div class="col-5-of-8">
+            <a href="/recipes/new">Create A Recipe</a>
+          </div><!--col-5-of-8"-->
+          <div class="col-6-of-8">
+            <a href="/ingredients/new">Create an Ingredient</a>
+          </div><!--col-6-of-8-->
+          <div class="col-7-of-8">
+            <%=link_to "Create A Making", "/users/#{current_user.id}/makings/new"%>
+          </div><!--col-7-of-8-->
+          <div class="col-8-of-8">
+            <%=link_to "Log Out", '/signout', method: :delete %>
+          </div><!--col-8-of-8-->
+        </div><!--col-8-->
+      </div><!--logged-in-navbar-->
     <% else %>
       <br>
     <%end%> 
