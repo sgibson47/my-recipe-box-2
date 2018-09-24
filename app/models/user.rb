@@ -16,9 +16,5 @@ class User < ApplicationRecord
     makings.order(:created_at).limit(5)
   end 
 
-  def own_recipes_with_ingredient(id)
-    
-  end
-
 end
 
