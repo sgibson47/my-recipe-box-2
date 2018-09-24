@@ -25,5 +25,7 @@ class Recipe < ApplicationRecord
     makings.average("rating").to_s
   end
 
-
+  def self.by_avg_rating
+    joins(:makings).group("recipes.id").order("avg(makings.rating)")
+  end
 end
