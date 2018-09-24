@@ -17,5 +17,9 @@ class Recipe < ApplicationRecord
     self.makings.count
   end
 
+  def self.by_ingredient(ingred_id)
+    includes(:ingredients).where(ingredients: {id: "#{ingred_id}"})
+  end
+
 
 end
