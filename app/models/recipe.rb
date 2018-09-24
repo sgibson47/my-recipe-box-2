@@ -14,11 +14,15 @@ class Recipe < ApplicationRecord
   end
 
   def times_made
-    self.makings.count
+    makings.count
   end
 
   def self.by_ingredient(ingred_id)
     includes(:ingredients).where(ingredients: {id: "#{ingred_id}"})
+  end
+
+  def avg_rating
+    makings.average("rating").to_s
   end
 
 
