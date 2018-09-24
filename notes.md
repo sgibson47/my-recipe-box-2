@@ -185,7 +185,7 @@ README file contains the following sections:
 [] Licensing statement (e.g. This project has been licensed under the MIT open source license.)
 
 LICENSE file is included in your repo and linked at the bottom of your README file(e.g. MIT open source license, GNU public license, Creative Commons license) *
-[] True
+[X] True
 
 Using Ruby on Rails for the project *
 [X] True
