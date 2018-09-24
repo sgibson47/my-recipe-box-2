@@ -12,8 +12,12 @@ class User < ApplicationRecord
     recipes.order(:created_at).limit(5)
   end 
 
+  def five_most_recent_user_makings
+    makings.order(:created_at).limit(5)
+  end 
+
   def own_recipes_with_ingredient(id)
-    recipes.where(:ingredients).includes(id)
+    
   end
 
 end
