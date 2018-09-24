@@ -28,4 +28,8 @@ class Recipe < ApplicationRecord
   def self.by_avg_rating
     joins(:makings).group("recipes.id").order("avg(makings.rating)")
   end
+
+  def self.by_times_made
+    joins(:makings).group("recipes.id").order("count(makings.id) desc")
+  end
 end
