@@ -61,7 +61,7 @@ ToDo:
       X - add makings model
       X- nested new form for a making
         /users/:id/makings/new
-    10. class level ActiveRecord scope methods
+    X10. class level ActiveRecord scope methods
       - recipes by rating
       - recipes by ingredient
 
@@ -70,6 +70,19 @@ ToDo:
       - add links to allow a user to navigate around site
     X 13. add protections
       - only the user who created a recipe or a making should be able to edit or delete that record
+    14. edit controllers & views to give user access to scope methods (filter/limit recipes displayed in index)
+    15. style all the remaining ugly away
+    16. review views re appropriate use of helpers & partials
+    17. draft README
+    18. record walkthrough & upload to youtube
+    19. daft blog post
+    20. checklist & submit!
+
+    Extra
+    #. improve ingredient model
+        - change serving size number to a fixed list with common fractions [1 .. 10, 1/8, 1/4, 1/2, 3/4, 1/3, 2/3]?
+        - change serving units to a fixed list  [ounce, gram, cup, tsp, tbsp, pinch]
+        - add nutritional info 
 
 
 
