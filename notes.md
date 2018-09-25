@@ -83,111 +83,18 @@ ToDo:
         - change serving size number to a fixed list with common fractions [1 .. 10, 1/8, 1/4, 1/2, 3/4, 1/3, 2/3]?
         - change serving units to a fixed list  [ounce, gram, cup, tsp, tbsp, pinch]
         - add nutritional info 
-
-
-
- Needs to Happen:
- - Create/Read/Update/Delete Ingredients
-    - routes to C: get /ingredients/new, C: post /ingredients, R: get /ingredients/:id, U: get /ingredients/:id/[edit? update?], U: post /ingredients/:id, D: delete /ingredients/:id
-    - controller actions #new, #create, #show, #destroy, #update, [? #edit?]
-
- - Create/Read/Update/Delete Recipes 
-    - routes to C: get /recipes/new, C: post /recipes, R: get /recipes/:id, U: get /recipes/:id/[edit? update?], U: post /recipes/:id, D: delete /recipes/:id
-    - controller actions #new, #create, #show, #destroy, #update, [? #edit?]
-    - forms & controllers should accomodate selecting [#?] from existing ingredients or create [#?] new ingredients
-  
-  - Nested stuff
-    - nested route show or index
-        users/2/recipes
-    - nested route "new" form
-      - /users/2/recipes -- at bottom? in side bar? of index of user 2's recipes render recipe form?
-
-  - OmniAuth
-  - README 
-    - Application description
-    - Installation guide (e.g. fork and clone repo, migrate db, bundle install, etc)
-    - Contributors guide (e.g. file an issue, file an issue with a pull request, etc)
-    - Licensing statement (e.g. This project has been licensed under the MIT open source license.)
-
-  - License
-
-
-
-
-
-  - Make it Pretty
-    - Add picture to recipes
-    - Add picture to ingredients
-    - cleaner way to take in instructions? maybe multiple strings that each descripe a step and then printing them in an ordered list to create an instructions section of a recipe show page. Is that another model? Instructions belong to recipes and recipes have many instructions?
-
-  Layout 
-    - not logged in
-      - nothing!
-    - logged in Nav bar
-      - Greeting -- notice of which account is signed in
-      - link/button to index, /recipes
-      - link/button to current user's show page, /users/#{current_user.id}
-      - link/button to current user's recipe index, /users/#{current_user.id}/recipes
-      - link to records of what you made, /users/#{current_user.id}/makings
-      - link/button to create a recipe, /recipes/new
-      - link/button to create an ingredient, /ingredients/new
-      - link/button to create a making, /users/#{current_user.id}/makings/new
-      - link/button to log out, delete "/signout"
-  
-  redirect_if_logged_in
-    - redirect to user's show page with flash message telling them to log out first to access the requested page
-    - call before sessions#new and users#new
-
-  redirect_if_not_logged_in
-    - redirect to '/' with flash message telling user to log in or create an account to access the requested page
-    - call before everything except sessions#new, users#new
-
-  redirect_if_belongs_to_another_user
-    - should redirect to the current_user's show page if the resource doesn't belong to that user
-    - use params[:id] or params[:user_id] && current_user.id to verify that the resource belongs to current_user 
-    - call before users#show, recipes#edit, recipes#destroy, makings#edit, makings#destroy
-
-  For those not logged in
-    - '/' "welcome#home"
-      - Greeting
-      - link/button to with email
-      - link/button to login with fb
-      - link/button to sign up
-      [elminiate and always redirect_to "users/#{current_user.id}" if logged_in? OR redirect_to "/sigin" if !logged_in?]
-    
-    - '/signin' "session#new"
-      - Greeting
-      - form to login with email 
-      - link/button to login with fb
-      - link/button to sign up
-    
-    - '/users/new' "users#new"
-      - form to create a new user
-      - link/button to login with fb
-      - link/button to with email 
-
-  Logged_in
-    - 'users/:id' "users#show"
-      - greeting
-      - any content?
-        - recently created recipes
-        - links to user's top # recipes
-
-       
-
-  X - Add Making model to track rating, notes, and photo re each attempt
-
-  - Add class methods to sort recipes by avg ranking
-  - Add model to hold recipe types? Breakfast, Lunch, Dinner etc.
-  - Add model to hold recipe categories? Paleo, Keto, Gluten Free, Vegetarian, Vegan 
-
-  re name makings to trys 
-  yeah, makes way more sense to ask someone if they've tried a recipe and then how it went?
-  ooo add difficulty rating to too each making/try
-
-
-
-
+    #. improve instructions
+      - cleaner way to take in instructions? maybe multiple strings that each descripe a step and then printing them in an ordered list to create an instructions section of a recipe show page. Is that another model? Instructions belong to recipes and recipes have many instructions?
+    #. add category model 
+      - Breakfast, Lunch, Dinner etc.
+      - Paleo, Keto, Gluten Free, Vegetarian, Vegan
+    #. add pictures?
+      - to recipes
+      - to ingredients
+      - to makings
+    #.  re name makings to trys 
+      - yeah, makes way more sense to ask someone if they've tried a recipe and then how it went?
+      - ooo add difficulty rating to too each making/try
 
 Rails Project Review Requirement Checklist
 
@@ -229,10 +136,9 @@ Include reasonable validations for simple model objects (please provide list of 
 Include a class level ActiveRecord scope method (please provide model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes) *
 [] 
 Min:
-Recipe.by_ingredient(i) -- returns a collection of recipes that include ingredient i in their ingredients
-Recipe.highest_rating -- returns recipe with the highest average rating 
-Recipe.highest_to_lowest_rating -- returns a collection of recipes sorted by avg. rating from highest to lowest
-Recipe.lowest_to_highest_rating -- returns a collection of recipes sorted by avg. rating from lowest to highest
+Recipe.by_ingredient(ingred_id) URL: 
+Recipe.by_avg_rating URL: 
+Recipe.by_times_made URL: 
 
 Include signup (how e.g. Devise) *
 [X]
