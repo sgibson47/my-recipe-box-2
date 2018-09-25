@@ -6,6 +6,8 @@ class RecipesController < ApplicationController
   def index
     if params[:user_id]
       @recipes = User.find(params[:user_id]).recipes
+    elsif params[:ingredient]
+      @recipes = Recipe.by_ingredient(params[:ingredient])
     else
       @recipes = Recipe.all
     end

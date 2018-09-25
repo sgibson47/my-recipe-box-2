@@ -5,7 +5,11 @@
       get the latest recipes
     </div><!--col-not-4-->
     <div class="col-not-4">
-      get recipes with ingred
+      Filter Recipes by Ingredient
+      <%= form_tag("/recipes", method: "get") do%>
+        <%= select_tag "ingredient", options_from_collection_for_select(Ingredient.all, "id", "name"), include_blank: true%>
+        <%= submit_tag "Filter"%>
+      <%end%>
     </div><!--col-not-4-->
     <div class="col-not-4">
       filter by times made
