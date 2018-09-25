@@ -9,6 +9,7 @@ class Recipe < ApplicationRecord
   validates :name, uniqueness: true 
 
   scope :by_avg_rating, -> { joins(:makings).group("recipes.id").order("avg(makings.rating)") }
+  scope :by_times_made, -> { joins(:makings).group("recipes.id").order("count(makings.id) desc") }
   
 
   def self.five_most_recent_recipes
