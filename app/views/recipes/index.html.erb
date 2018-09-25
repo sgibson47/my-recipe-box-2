@@ -2,7 +2,9 @@
   
   <div class="filter-bar">
     <div class="col-not-4">
-      get the latest recipes
+      Sort Recipesby Age<br>
+      <%=link_to "Newest to Oldest", recipes_path(:sort => "new")%><br>
+      <%=link_to "Oldest to Newest", recipes_path(:sort => "old")%>
     </div><!--col-not-4-->
     <div class="col-not-4">
       Filter Recipes by Ingredient
@@ -12,10 +14,12 @@
       <%end%>
     </div><!--col-not-4-->
     <div class="col-not-4">
-      filter by times made
+      Sort Recipes by Times Made<br>
+      <%=link_to "Most to Least", recipes_path(:sort => "most")%><br>
+      <%=link_to "Least to Most", recipes_path(:sort => "least")%>
     </div><!--col-not-4-->
     <div class="col-4">
-      Sort by Rating<br>
+      Sort Rated Recipes<br>
       <%=link_to "Best to Worst", recipes_path(:sort => "best")%><br>
       <%=link_to "Worst to Best", recipes_path(:sort => "worst")%>
     </div><!--col-4-->

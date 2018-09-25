@@ -14,6 +14,7 @@ class Recipe < ApplicationRecord
   scope :by_times_made_most, -> { joins(:makings).group("recipes.id").order("count(makings.id) desc") }
   scope :by_times_made_least, -> { joins(:makings).group("recipes.id").order("count(makings.id)") }
   scope :latest, -> { order(created_at: :desc) }
+  scope :oldest, -> { order(:created_at) }
   scope :five, -> { limit(5) }
 
   
