@@ -1,0 +1,14 @@
+<div class="greeting">
+  <h1>Recipes</h1>
+</div><!--greeting-->
+<div class="main">
+  <ol>
+    <%recipes.each do |r|%>
+      <li>
+        <%=link_to r.name, recipe_path(r)%>
+      </li>
+    <%end%>
+  </ol>
+</div><!--main-->
+
+

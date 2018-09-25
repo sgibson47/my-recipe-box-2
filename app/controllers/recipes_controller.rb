@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
   def index
     if params[:user_id]
       @recipes = User.find(params[:user_id]).recipes
+      render "user_index"
     elsif params[:ingredient]
       @recipes = Recipe.by_ingredient(params[:ingredient])
     elsif params[:sort]
