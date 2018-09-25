@@ -23,8 +23,10 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_if_recipe_belongs_to_another_user
-    flash[:message] = "You can't edit or delete another user's recipes."
-    return redirect_to("/users/#{current_user.id}") unless recipe_belongs_to_current_user?
+    unless recipe_belongs_to_current_user?
+      flash[:message] = "You can't edit or delete another user's recipes."
+      return redirect_to("/users/#{current_user.id}")
+    end
   end
 
   def making_belongs_to_current_user?
@@ -32,7 +34,9 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_if_making_belongs_to_another_user
-    flash[:message] = "You can't edit or delete another user's making."
-    return redirect_to("/users/#{current_user.id}") unless making_belongs_to_current_user?
+    unless making_belongs_to_current_user?
+      flash[:message] = "You can't edit or delete another user's making."
+      return redirect_to("/users/#{current_user.id}") 
+    end
   end
 end
