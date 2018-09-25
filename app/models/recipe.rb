@@ -7,6 +7,8 @@ class Recipe < ApplicationRecord
 
   validates :name, presence: true
   validates :name, uniqueness: true 
+
+  scope :by_avg_rating, -> { joins(:makings).group("recipes.id").order("avg(makings.rating)") }
   
 
   def self.five_most_recent_recipes
@@ -23,10 +25,6 @@ class Recipe < ApplicationRecord
 
   def avg_rating
     makings.average("rating").to_s
-  end
-
-  def self.by_avg_rating
-    joins(:makings).group("recipes.id").order("avg(makings.rating)")
   end
 
   def self.by_times_made
