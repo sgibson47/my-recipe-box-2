@@ -15,7 +15,9 @@
       filter by times made
     </div><!--col-not-4-->
     <div class="col-4">
-      filter by avg rating
+      Sort by Rating<br>
+      <%=link_to "Best to Worst", recipes_path(:sort => "best")%><br>
+      <%=link_to "Worst to Best", recipes_path(:sort => "worst")%>
     </div><!--col-4-->
   </div><!--filter-bar-->
   <div class="greeting">

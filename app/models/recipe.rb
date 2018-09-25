@@ -9,8 +9,10 @@ class Recipe < ApplicationRecord
   validates :name, uniqueness: true 
 
   scope :by_ingredient, -> (ingred_id) {includes(:ingredients).where(ingredients: {id: "#{ingred_id}"})}
-  scope :by_avg_rating, -> { joins(:makings).group("recipes.id").order("avg(makings.rating)") }
-  scope :by_times_made, -> { joins(:makings).group("recipes.id").order("count(makings.id) desc") }
+  scope :by_avg_rating_worst, -> { joins(:makings).group("recipes.id").order("avg(makings.rating)") }
+  scope :by_avg_rating_best, -> { joins(:makings).group("recipes.id").order("avg(makings.rating) desc") }
+  scope :by_times_made_most, -> { joins(:makings).group("recipes.id").order("count(makings.id) desc") }
+  scope :by_times_made_least, -> { joins(:makings).group("recipes.id").order("count(makings.id)") }
   scope :latest, -> { order(created_at: :desc) }
   scope :five, -> { limit(5) }
 

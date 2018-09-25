@@ -4,10 +4,18 @@ class RecipesController < ApplicationController
   before_action :redirect_if_recipe_belongs_to_another_user, only: [:update, :destroy, :edit]
   
   def index
+    # raise params.inspect
     if params[:user_id]
       @recipes = User.find(params[:user_id]).recipes
     elsif params[:ingredient]
       @recipes = Recipe.by_ingredient(params[:ingredient])
+    elsif params[:sort]
+      case params[:sort]
+      when "best"
+        @recipes = Recipe.by_avg_rating_best
+      when "worst"
+        @recipes = Recipe.by_avg_rating_worst
+      end
     else
       @recipes = Recipe.all
     end
