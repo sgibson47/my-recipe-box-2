@@ -1,10 +1,22 @@
 <div class="recipes-index">
+  
+  <div class="filter-bar">
+    <div class="col-not-4">
+      get the latest recipes
+    </div><!--col-not-4-->
+    <div class="col-not-4">
+      get recipes with ingred
+    </div><!--col-not-4-->
+    <div class="col-not-4">
+      filter by times made
+    </div><!--col-not-4-->
+    <div class="col-4">
+      filter by avg rating
+    </div><!--col-4-->
+  </div><!--filter-bar-->
   <div class="greeting">
     <h1>Recipes</h1>
   </div><!--greeting-->
-  <div class="filter-bar">
-    
-  </div><!--filter-bar-->
   <div class="main">
     <ol>
       <%@recipes.each do |r|%>
