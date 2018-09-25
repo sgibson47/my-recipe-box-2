@@ -4,26 +4,12 @@ class RecipesController < ApplicationController
   before_action :redirect_if_recipe_belongs_to_another_user, only: [:update, :destroy, :edit]
   
   def index
-    # raise params.inspect
     if params[:user_id]
       @recipes = User.find(params[:user_id]).recipes
     elsif params[:ingredient]
       @recipes = Recipe.by_ingredient(params[:ingredient])
     elsif params[:sort]
-      case params[:sort]
-      when "best"
-        @recipes = Recipe.by_avg_rating_best
-      when "worst"
-        @recipes = Recipe.by_avg_rating_worst
-      when "most"
-        @recipes = Recipe.by_times_made_most
-      when "least"
-        @recipes = Recipe.by_times_made_least
-      when "new"
-        @recipes = Recipe.latest
-      when "old"
-        @recipes = Recipe.oldest
-      end
+      sort_cases
     else
       @recipes = Recipe.all
     end
@@ -89,6 +75,23 @@ class RecipesController < ApplicationController
     num_to_build = 5 - count
     num_to_build.times do
       recipe.amounts.build
+    end
+  end
+
+  def sort_cases
+    case params[:sort]
+    when "best"
+      @recipes = Recipe.by_avg_rating_best
+    when "worst"
+      @recipes = Recipe.by_avg_rating_worst
+    when "most"
+      @recipes = Recipe.by_times_made_most
+    when "least"
+      @recipes = Recipe.by_times_made_least
+    when "new"
+      @recipes = Recipe.latest
+    when "old"
+      @recipes = Recipe.oldest
     end
   end
 
