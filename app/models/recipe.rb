@@ -1,7 +1,7 @@
 class Recipe < ApplicationRecord
   belongs_to :user
-  has_many :makings
-  has_many :amounts
+  has_many :makings, dependent: :destroy
+  has_many :amounts, dependent: :destroy
   has_many :ingredients, :through => :amounts
   accepts_nested_attributes_for :amounts, reject_if: :all_blank, :allow_destroy => true
 
