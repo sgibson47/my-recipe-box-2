@@ -64,7 +64,7 @@ ToDo:
     10. class level ActiveRecord scope methods
       - recipes by rating
       - recipes by ingredient
-      - recipes alphabetical
+
     X11. OmniAuth
     X 12. Connect eveything
       - add links to allow a user to navigate around site
