@@ -3,25 +3,22 @@
     <div class="filter-bar">
       <div class="col-not-4">
         Sort Recipes by Age<br>
-        <%=link_to "Newest to Oldest", recipes_path(:sort => "new")%><br>
-        <%=link_to "Oldest to Newest", recipes_path(:sort => "old")%>
+        <%=new_link%><br>
+        <%=old_link%>
       </div><!--col-not-4-->
       <div class="col-not-4">
         Filter Recipes by Ingredient
-        <%= form_tag("/recipes", method: "get") do%>
-          <%= select_tag "ingredient", options_from_collection_for_select(Ingredient.all, "id", "name"), include_blank: true%>
-          <%= submit_tag "Filter"%>
-        <%end%>
+        <%=render "filter_by_ingred"%>
       </div><!--col-not-4-->
       <div class="col-not-4">
         Sort Recipes by Times Made<br>
-        <%=link_to "Most to Least", recipes_path(:sort => "most")%><br>
-        <%=link_to "Least to Most", recipes_path(:sort => "least")%>
+        <%=most_link%><br>
+        <%=least_link%>
       </div><!--col-not-4-->
       <div class="col-4">
         Sort Rated Recipes<br>
-        <%=link_to "Best to Worst", recipes_path(:sort => "best")%><br>
-        <%=link_to "Worst to Best", recipes_path(:sort => "worst")%>
+        <%=best_link%><br>
+        <%=worst_link%>
       </div><!--col-4-->
     </div><!--filter-bar-->
   <%end%>
