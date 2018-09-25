@@ -8,12 +8,17 @@ class User < ApplicationRecord
   validates :password, confirmation: true
   validates :email, uniqueness: true
 
-  def five_most_recent_user_recipes
-    recipes.order(:created_at).limit(5)
+
+  def users_latest_recipes
+    recipes.order(created_at: :desc)
   end 
 
-  def five_most_recent_user_makings
-    makings.order(:created_at).limit(5)
+  def five
+    limit(5)
+  end
+
+  def users_latest_makings
+    makings.order(created_at: :desc)
   end 
 
 end
