@@ -96,9 +96,9 @@ ToDo:
           -- maybe move "you're logged in as: <>" to footer as well?
 
         - Walk through each template & style
-          - Users
+          X- Users
             X- new
-            - show
+            X- show
           - Sessions
             - new
           - Recipes
