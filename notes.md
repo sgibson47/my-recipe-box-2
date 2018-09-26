@@ -99,8 +99,8 @@ ToDo:
           X- Users
             X- new
             X- show
-          - Sessions
-            - new
+          X- Sessions
+            X- new
           - Recipes
             - index
             - user index
