@@ -1,0 +1,9 @@
+<div class="main">
+  <ol>
+    <%makings.each do |m|%>
+      <li>
+        <%=link_to m.recipe.name, making_path(m)%>
+      </li>
+    <%end%>
+  </ol>
+</div><!--main-->
