@@ -101,12 +101,12 @@ ToDo:
             X- show
           X- Sessions
             X- new
-          - Recipes
+          X- Recipes
             X - index
             X - user index
             X - show
             X - new
-            - edit
+            X- edit
           - Ingredients
             - index
             - user index
