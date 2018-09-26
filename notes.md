@@ -97,7 +97,7 @@ ToDo:
 
         - Walk through each template & style
           - Users
-            - new
+            X- new
             - show
           - Sessions
             - new
