@@ -105,7 +105,7 @@ ToDo:
             X - index
             X - user index
             X - show
-            - new
+            X - new
             - edit
           - Ingredients
             - index
