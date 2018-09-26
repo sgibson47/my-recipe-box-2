@@ -17,33 +17,38 @@
         <div class="title">
           <%= link_to 'My Recipe Box', '/' %>
         </div><!--title-->
-          <div class="col-not-9">
-            <%=link_to "Your Page", "/users/#{current_user.id}"%>
-          </div><!--col-not-9-->
-          <div class="col-not-9">
-            <a href="/recipes">All Recipes</a>
-          </div><!--col-not-9-->
-          <div class="col-not-9">
-            <%=link_to "Your Recipes", "/users/#{current_user.id}/recipes"%>
-          </div><!--col-not-9-->
-          <div class="col-not-9">
-            <%=link_to "What You've Made", "/users/#{current_user.id}/makings"%>
-          </div><!--col-not-9-->
-          <div class="col-not-9">
-            <a href="/recipes/new">Create A Recipe</a>
-          </div><!--col-not-9-->
-          <div class="col-not-9">
-            <a href="/ingredients/new">Create an Ingredient</a>
-          </div><!--col-not-9-->
-          <div class="col-not-9">
-            <%=link_to "Create A Making", "/users/#{current_user.id}/makings/new"%>
-          </div><!--col-not-9-->
-          <div class="col-not-9">
+        
+        <div class="col-not-9">
+          <%=link_to "Your Page", "/users/#{current_user.id}"%>
+        </div><!--col-not-9-->
 
-          </div><!--col-not-9-->
-          <div class="col-9">
-            
-          </div><!--col-9-->
+        <div class="col-not-9">
+          <%=link_to "Recipes", "/recipes"%>
+        </div><!--col-not-9-->
+        <div class="col-not-9">
+          <%=link_to "Your Recipes", "/users/#{current_user.id}/recipes"%>
+        </div><!--col-not-9-->
+        <div class="col-not-9">
+          <%=link_to "Save a Recipe", "/recipes/new"%>
+        </div><!--col-not-9-->
+          
+        <div class="col-not-9">
+          <%=link_to "Ingredients", "/ingredients"%>
+        </div><!--col-not-9-->
+        <div class="col-not-9">
+          <%=link_to "Save an Ingredient", "/ingredients/new"%>
+        </div><!--col-not-9-->
+
+        <div class="col-not-9">
+          <%=link_to "What Everyone's Making", "/makings"%>
+        </div><!--col-not-9-->
+        <div class="col-not-9">
+          <%=link_to "What You've Made", "/users/#{current_user.id}/makings"%>
+        </div><!--col-not-9-->
+        <div class="col-9">
+          <%=link_to "Record What You Made", "/users/#{current_user.id}/makings/new"%>
+        </div><!--col-9-->
+
       </div><!--logged-in-navbar-->
     <% else %>
       <div class="logged-out-title-bar">
