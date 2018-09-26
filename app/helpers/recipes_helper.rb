@@ -1,5 +1,9 @@
 module RecipesHelper
 
+  def amounts_for_recipe_show
+    @recipe.amounts
+  end
+
   def new_link
     link_to "Newest to Oldest", recipes_path(:sort => "new")
   end
