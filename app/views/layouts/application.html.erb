@@ -12,9 +12,7 @@
   <body>
     <% if logged_in? %>
       <div class="logged-in-navbar">
-        <div class="greeting">
-          You're logged in as: <%=current_user.name %>
-        </div><!--greeting-->
+        
         
         <div class="title">
           <%= link_to 'My Recipe Box', '/' %>
@@ -41,7 +39,7 @@
             <%=link_to "Create A Making", "/users/#{current_user.id}/makings/new"%>
           </div><!--col-not-8-->
           <div class="col-8">
-            <%=link_to "Log Out", '/signout', method: :delete %>
+            
           </div><!--col-8-->
       </div><!--logged-in-navbar-->
     <% else %>
@@ -58,7 +56,14 @@
     <% end %>
     <%= yield %>
     <div class="footer">
-        
+        <% if logged_in? %>
+        <div class="greeting">
+          You're logged in as: <%=current_user.name %>
+        </div><!--greeting-->
+        <div id="log_out">
+          <%=link_to "Log Out", '/signout', method: :delete %>
+        </div><!--logout-->
+      <% end %>
     </div><!--footer-->
   </body>
 </html>
