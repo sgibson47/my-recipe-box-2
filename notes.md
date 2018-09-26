@@ -70,7 +70,7 @@ ToDo:
       - add links to allow a user to navigate around site
     X 13. add protections
       - only the user who created a recipe or a making should be able to edit or delete that record
-    14. edit controllers & views to give user access to scope methods (filter/limit recipes displayed in index)
+    X 14. edit controllers & views to give user access to scope methods (filter/limit recipes displayed in index)
     15. style all the remaining ugly away
     16. review views re appropriate use of helpers & partials
     17. draft README
