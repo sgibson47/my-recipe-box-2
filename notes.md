@@ -72,6 +72,27 @@ ToDo:
       - only the user who created a recipe or a making should be able to edit or delete that record
     X 14. edit controllers & views to give user access to scope methods (filter/limit recipes displayed in index)
     15. style all the remaining ugly away
+      -  refactor nav bar to enable access to all the things the site can do
+        - Recipes '/recipes'
+          - each recipe displayed is a link to that recipe's show page
+          - show page will have links to access edit form and to delete a recipe
+        - Your Recipes "/users/#{current_user.id}/recipes"
+        - Save a Recipe "/recipes/new"
+        - Ingredients '/recipes'
+          - each ingredient displayed is a link to that ingredient's show page
+          - show page will have links to access edit form and to delete an ingredient
+        - Save an Ingredient "/ingredients/new"
+        - What Everyone's Making '/makings'
+        - What You've Made "/users/#{current_user.id}/makings"
+          - each making displayed is a link to that making's show page
+          - show page will have links to access edit form and to delete a making
+        8- Record What You Made 
+        keep the column structure you have and move logout & greeting to footer if logged_in?
+        "/users/#{current_user.id}/makings/new"
+        - Log Out "/signout"
+          -- keep or move to footer? 
+          -- maybe move "you're logged in as: <>" to footer as well?
+
     16. review views re appropriate use of helpers & partials
     17. draft README
     18. record walkthrough & upload to youtube
