@@ -86,7 +86,9 @@ ToDo:
         - What You've Made "/users/#{current_user.id}/makings"
           - each making displayed is a link to that making's show page
           - show page will have links to access edit form and to delete a making
-        8- Record What You Made 
+        8- Record What You Made
+        Need to add 
+        9- Your Page 
         keep the column structure you have and move logout & greeting to footer if logged_in?
         "/users/#{current_user.id}/makings/new"
         - Log Out "/signout"
