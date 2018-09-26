@@ -7,21 +7,27 @@
   <%end%>
   
 
-  Name: <%= f.text_field :name%><br>
+  
+  <%= f.label :name, class: "form-heading"%>
+  <%= f.text_field :name%><br>
   <br>
-  Select Ingredients:<br>
+  <%= f.label :amounts, "Select Ingredients", class: "form-heading"%><br>
   <%= f.fields_for :amounts do |amnt| %>
     <%= amnt.label :ingredient%>
-    <%= amnt.collection_select :ingredient_id, Ingredient.all, :id, :name_with_serving_info,:include_blank => true %>
+    <%= amnt.collection_select :ingredient_id, Ingredient.all, :id, :name_with_serving_info,:include_blank => true%>
+      
     <%= amnt.label :servings_per_recipe%>
-    <%= amnt.number_field :servings_per_recipe%> Delete: <%= amnt.check_box :_destroy %><br>
+    <%= amnt.number_field :servings_per_recipe%> 
+     
+    <%= amnt.label :_destroy, "Delete"%>
+    <%= amnt.check_box :_destroy%><br>
   <%end%>
   
   <br>
   <br>
 
-  Instructions: <br>
+  <%= f.label :instructions, class: "form-heading"%><br>
   <%= f.text_area :instructions, placeholder: "1. Mix dry ingredients, 2. Mix wet ingredients, . . . "%><br>
   <br>
-  <%=f.submit%>
+  <%=f.submit :class => "submit_class" %>
 <%end%>
