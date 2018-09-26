@@ -6,10 +6,13 @@
     <br>
   <%end%>
   
-
-  Name: <%= f.text_field :name%><br>
-  Email: <%= f.text_field :email%><br>
-  Password: <%= f.password_field :password %><br>
-  Confirm Password: <%= f.password_field :password_confirmation %><br>
-  <%= f.submit %>
+  <%= f.label :name%>
+  <%= f.text_field :name, :class => "form_fields"%><br>
+  <%= f.label :email%>
+  <%= f.text_field :email, :class => "form_fields"%><br>
+  <%= f.label :password%>
+  <%= f.password_field :password, :class => "form_fields" %><br>
+  <%= f.label :password_confirmation%>
+  <%= f.password_field :password_confirmation, :class => "form_fields" %><br>
+  <%= f.submit :class => "submit_class" %>
 <%end%>
