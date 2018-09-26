@@ -3,7 +3,7 @@
     <h1>Welcome back, <%=@user.name%></h1>
   </div><!--greeting-->
 
-  <div class="user-recent-makings">
+  <div class="block user-recent-makings">
     <h3>
       What you've made lately:
       <br>
@@ -11,7 +11,7 @@
     <%= render "makings/display_makings", makings: five_most_recent_user_makings %>
   </div><!--user-recent-makings-->
 
-  <div class="recent-makings">
+  <div class="block recent-makings">
     <h3>
       What everyone's made lately:
       <br>
@@ -19,7 +19,7 @@
     <%= render "makings/display_makings", makings: five_most_recent_recipes %>
   </div><!--recent-makings-->
 
-  <div class="recent-recipes">
+  <div class="block recent-recipes">
     <h3>
       New recipes from everyone:
       <br>
