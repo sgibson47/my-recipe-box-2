@@ -1,4 +1,5 @@
 module RecipesHelper
+
   def new_link
     link_to "Newest to Oldest", recipes_path(:sort => "new")
   end

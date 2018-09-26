@@ -1,4 +1,4 @@
-<div class="users-show">
+<div id="users-show">
   <div class="greeting">
     <h1>Welcome back, <%=@user.name%></h1>
   </div><!--greeting-->
@@ -9,6 +9,8 @@
       <br>
       1. Cake <br>
       2. Pasta
+
+
       <!-- ? view helper that lists recently saved -->
     </h3>
   </div><!--user-recent-makings-->
@@ -27,9 +29,7 @@
     <h3>
       New recipes from everyone:
       <br>
-      1. Cake <br>
-      2. Pasta
-      <!-- ? view helper that lists recently saved -->
     </h3>
+    <%= render "recipes/display_recipes", recipes: five_most_recent_user_recipes %>
   </div><!--user-recent-makings-->
 </div><!--users-show-->
