@@ -7,22 +7,16 @@
     <h3>
       What you've made lately:
       <br>
-      1. Cake <br>
-      2. Pasta
-
-
-      <!-- ? view helper that lists recently saved -->
     </h3>
+    <%= render "makings/display_makings", makings: five_most_recent_user_makings %>
   </div><!--user-recent-makings-->
 
   <div class="recent-makings">
     <h3>
       What everyone's made lately:
       <br>
-      1. Cake <br>
-      2. Pasta
-      <!-- ? view helper that lists recently saved -->
     </h3>
+    <%= render "makings/display_makings", makings: five_most_recent_recipes %>
   </div><!--recent-makings-->
 
   <div class="recent-recipes">
