@@ -102,8 +102,8 @@ ToDo:
           X- Sessions
             X- new
           - Recipes
-            - index
-            - user index
+            X - index
+            X - user index
             - show
             - new
             - edit
