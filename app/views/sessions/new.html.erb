@@ -1,9 +1,13 @@
-<div class="login">
+<div id="login">
   <h1>Login!</h1>
-  
+
   <%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do%>
-    Email: <%= text_field_tag(:email) %><br>
-    Password: <%= password_field_tag(:password) %><br>
-    <input type=submit value='login'>
+    
+
+    <%= label_tag :email%>
+    <%= text_field_tag(:email, "", class: "form_fields") %><br>
+    <%= label_tag :password%>
+    <%= password_field_tag(:password, "", class: "form_fields") %><br>
+    <input type=submit value='login' class = "submit_class">
   <%end%>
 </div><!--login-->
