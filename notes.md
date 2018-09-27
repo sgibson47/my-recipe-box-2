@@ -109,9 +109,9 @@ ToDo:
             X- edit
           - Ingredients
             X - index
-            - show
+            X- show
             - new
-            - edit
+            X- edit
           - Makings
             - index
             - user index
