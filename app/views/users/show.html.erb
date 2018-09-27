@@ -8,7 +8,7 @@
       What you've made lately:
       <br>
     </h3>
-    <%= render "makings/display_makings", makings: five_most_recent_user_makings %>
+    <%= render "makings/display_makings_for_users_show", makings: five_most_recent_user_makings %>
   </div><!--user-recent-makings-->
 
   <div class="block recent-makings">
@@ -16,7 +16,7 @@
       What everyone's made lately:
       <br>
     </h3>
-    <%= render "makings/display_makings", makings: five_most_recent_recipes %>
+    <%= render "makings/display_makings_for_users_show", makings: five_most_recent_recipes %>
   </div><!--recent-makings-->
 
   <div class="block recent-recipes">

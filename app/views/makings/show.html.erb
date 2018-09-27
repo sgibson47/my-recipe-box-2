@@ -1,5 +1,5 @@
 <div id="makings-show">
-  <h1 class="body-title"><%=@making.user.name%> made <%=@making.recipe.name%></h1>
+  <h1 class="body-title"><%=@making.user.name%> made <%=link_to @making.recipe.name, recipe_path(@making.recipe)%></h1>
     
 
   <div class="info block">

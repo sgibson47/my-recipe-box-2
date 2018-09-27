@@ -9,12 +9,14 @@
   <%= f.label :recipe%>
   <%= f.collection_select :recipe_id, Recipe.all, :id, :name %>
   <%= f.label :rating%>
-  <%= f.number_field :rating%>
+  <%= f.number_field :rating, class: "form_fields"%>
   <%= f.label :notes%>
-  <%= f.text_field :notes%>
+  <%= f.text_field :notes, class: "form_fields"%>
 
   
   <br>
   <br>
-  <%=f.submit%>
+  <br>
+  <br>
+  <%=f.submit :class => "submit_class"%>
 <%end%>
