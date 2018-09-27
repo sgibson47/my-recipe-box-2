@@ -6,10 +6,13 @@
     <br>
   <%end%>
   
-
-  Name: <%= f.text_field :name%><br>
-  Serving Size: 
-  <%= f.number_field :serving_size_number, placeholder: "number (e.g. 3)"%> <%= f.text_field :serving_size_unit, placeholder: "unit (e.g. cup)"%>
+  <%=f.label :name%>
+  <%= f.text_field :name, class: "form_fields"%><br>
+  <%= f.label :serving_size_number, "Serving Size"%>
+  <div class="form_fields">
+    <%= f.number_field :serving_size_number, placeholder: "number (e.g. 3)"%> <%= f.text_field :serving_size_unit, placeholder: "unit (e.g. cup)"%>
+  </div><!--form-fields-->
   <br>
-  <%= f.submit %>
+  <br>
+  <%= f.submit :class => "submit_class" %>
 <%end%>
