@@ -71,7 +71,7 @@ ToDo:
     X 13. add protections
       - only the user who created a recipe or a making should be able to edit or delete that record
     X 14. edit controllers & views to give user access to scope methods (filter/limit recipes displayed in index)
-    15. style all the remaining ugly away
+    X 15. style all the remaining ugly away
       X-  refactor nav bar to enable access to all the things the site can do
         - Recipes '/recipes'
           - each recipe displayed is a link to that recipe's show page
