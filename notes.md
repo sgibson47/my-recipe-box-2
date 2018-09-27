@@ -123,6 +123,7 @@ ToDo:
     20. checklist & submit!
     -
     Extra
+    21. review styling to simplify/remove duplicative code
     #. add message to failed login with email & password, if email is registered, but pw doesn't match asking if this is the first time they've tried to log in with their email. If so suggest log in via facebook and reset password 
     redirect if user who first logged in with facebook tries to with their email and a password
       - back to '/'
