@@ -1,9 +1,22 @@
-<h1><%=@making.user.name%> made <%=@making.recipe.name%></h1>
+<div id="makings-show">
+  <h1 class="body-title"><%=@making.user.name%> made <%=@making.recipe.name%></h1>
+    
 
+  <div class="info block">
+    Rating:  <%=@making.rating%> stars <br>
+    Notes:<br>
+    <%=@making.notes%><br>
+  </div><!--info-->
 
-  Rating:<%=@making.rating%> stars <br>
-  Notes:<%=@making.notes%><br>
+  <div class="edit_delete">
+    
+    <div class="edit block">
+      <%=link_to "Edit Making", edit_making_path(@making) %>
+    </div><!--edit-->
 
-  <%=link_to "Edit", edit_making_path(@making) %>
-  <br>
-  <%=link_to "Delete", making_path(@making), method: :delete %>
+    <div class="delete block">
+      <%=link_to "Delete Making", making_path(@making), method: :delete %>
+    </div><!--delete-->
+
+  </div><!--edit_delete-->
+</div><!--makings-show-->
