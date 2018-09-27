@@ -115,7 +115,7 @@ ToDo:
           - Makings
             X- index
             X- user index
-            - show
+            X- show
             - new
             - edit
 
