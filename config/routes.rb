@@ -18,4 +18,6 @@ Rails.application.routes.draw do
 
   get '/auth/facebook/callback' => 'sessions#create'
   get 'auth/failure', to: redirect('/signin')
+
+  get '/makings' => 'makings#index'
 end
