@@ -110,11 +110,11 @@ ToDo:
           - Ingredients
             X - index
             X- show
-            - new
+            X - new
             X- edit
           - Makings
-            - index
-            - user index
+            X- index
+            X- user index
             - show
             - new
             - edit
