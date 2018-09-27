@@ -2,6 +2,8 @@ class Amount < ApplicationRecord
   belongs_to :ingredient
   belongs_to :recipe
 
+  validates :servings_per_recipe, presence: true
+
   def ingred_for_display
     num = self.servings_per_recipe * ingredient.serving_size_number 
 
