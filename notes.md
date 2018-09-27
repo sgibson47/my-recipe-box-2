@@ -64,7 +64,6 @@ ToDo:
     X10. class level ActiveRecord scope methods
       - recipes by rating
       - recipes by ingredient
-
     X11. OmniAuth
     X 12. Connect eveything
       - add links to allow a user to navigate around site
@@ -94,7 +93,6 @@ ToDo:
         - Log Out "/signout"
           -- keep or move to footer? 
           -- maybe move "you're logged in as: <>" to footer as well?
-
         - Walk through each template & style
           X- Users
             X- new
@@ -118,19 +116,17 @@ ToDo:
             X- show
             X- new
             X- edit
-
     16. review views re appropriate use of helpers & partials
     17. draft README
     18. record walkthrough & upload to youtube
     19. daft blog post
     20. checklist & submit!
-
+    -
     Extra
     #. add message to failed login with email & password, if email is registered, but pw doesn't match asking if this is the first time they've tried to log in with their email. If so suggest log in via facebook and reset password 
     redirect if user who first logged in with facebook tries to with their email and a password
       - back to '/'
       - add user edit form that let's user change their password 
-
     #. improve ingredient model
         - change serving size number to a fixed list with common fractions [1 .. 10, 1/8, 1/4, 1/2, 3/4, 1/3, 2/3]?
         - change serving units to a fixed list  [ounce, gram, cup, tsp, tbsp, pinch]
