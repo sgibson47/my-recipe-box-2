@@ -1,10 +1,10 @@
 Rails Project Review Requirement Checklist
 
 README file contains the following sections: 
-[] Application description
-[] Installation guide (e.g. fork and clone repo, migrate db, bundle install, etc)
-[] Contributors guide (e.g. file an issue, file an issue with a pull request, etc)
-[] Licensing statement (e.g. This project has been licensed under the MIT open source license.)
+[X] Application description
+[X] Installation guide (e.g. fork and clone repo, migrate db, bundle install, etc)
+[X] Contributors guide (e.g. file an issue, file an issue with a pull request, etc)
+[X] Licensing statement (e.g. This project has been licensed under the MIT open source license.)
 
 LICENSE file is included in your repo and linked at the bottom of your README file(e.g. MIT open source license, GNU public license, Creative Commons license) *
 [X] True
@@ -36,11 +36,10 @@ Include reasonable validations for simple model objects (please provide list of 
 [X]
 
 Include a class level ActiveRecord scope method (please provide model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes) *
-[] 
+[X] 
 Min:
-Recipe.by_ingredient(ingred_id) URL: 
-Recipe.by_avg_rating URL: 
-Recipe.by_times_made URL: 
+Recipe.by_ingredient(ingred_id) URL: /recipes
+Recipe.by_avg_rating URL: /recipes
 
 Include signup (how e.g. Devise) *
 [X]
@@ -71,13 +70,13 @@ Include form display of validation errors (please provide form URL e.g. /recipes
 /users/new
 
 The application is pretty DRY *
-[]
+[X]
 
 Limited logic in controllers *
-[]
+[X]
 
 Views use helper methods if appropriate *
-[]
+[X]
 
 Views use partials if appropriate *
-[]
+[X]
