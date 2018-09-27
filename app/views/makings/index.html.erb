@@ -1,8 +1,14 @@
-<h1>Makings Index</h1>
+<h1 class="body-title">Makings</h1>
 
-<%@makings.each do |m|%>
-  <h4><%=m.recipe.name%></h4>
-  Made by: <%=m.user.name%><br>
-  Rating:<%=m.rating%> stars <br>
-  Notes:<%=m.notes%><br>
-<%end%>
+<div class="makings">
+  <%@makings.each do |m|%>
+      <div class="name">
+        <%=link_to m.recipe.name, making_path(m)%>
+      </div><!--name-->
+      <div class="info">
+        Made by: <%=m.user.name%><br>
+        Rating:<%=m.rating%> stars <br>
+        Notes:<%=m.notes%><br>
+      </div><!--serving-->
+  <%end%>
+</div><!--makings-->
