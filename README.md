@@ -1,24 +1,16 @@
-# README
+# My Recipe Box
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Rails Portfolio Project
 
-Things you may want to cover:
+## Usage
+To use this app, just clone, run `rake db:migrate` and then `shotgun` to get it running.
 
-* Ruby version
 
-* System dependencies
+## Contributing
 
-* Configuration
+Bug reports and pull requests are welcome on GitHub at https://github.com/sgibson47/who-you-know.
 
-* Database creation
 
-* Database initialization
+## License
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT)
