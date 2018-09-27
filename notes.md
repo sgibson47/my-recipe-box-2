@@ -116,8 +116,8 @@ ToDo:
             X- index
             X- user index
             X- show
-            - new
-            - edit
+            X- new
+            X- edit
 
     16. review views re appropriate use of helpers & partials
     17. draft README
