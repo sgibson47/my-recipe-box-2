@@ -136,6 +136,8 @@ ToDo:
         - change serving size number to a fixed list with common fractions [1 .. 10, 1/8, 1/4, 1/2, 3/4, 1/3, 2/3]?
         - change serving units to a fixed list  [ounce, gram, cup, tsp, tbsp, pinch]
         - add nutritional info 
+        - displays the proper word for the unit, singular or plural-
+          - cup/cups, ounce/ounces, pinch/pinches, gram/grams
     #. improve instructions
       - cleaner way to take in instructions? maybe multiple strings that each descripe a step and then printing them in an ordered list to create an instructions section of a recipe show page. Is that another model? Instructions belong to recipes and recipes have many instructions?
     #. add category model 

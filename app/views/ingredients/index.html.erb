@@ -1,6 +1,11 @@
-<h1>All the Ingredients!</h1>
-<% @ingredients.each do |i| %>
-  <%= i.name%><br>
-  <p>Serving Size: <%="#{i.serving_size_number} #{i.serving_size_unit}"%></p><br>
-  <!--when you settle on how you want to display the serving size, make a helper method to do it and then call that here; make sure it displays the proper word for the unit, singular or plural-->
-<%end%>
+<h1 class="body-title">All the Ingredients!</h1>
+<div class="ingredients">
+  <% @ingredients.each do |i| %>
+      <div class="name">
+        <%=link_to i.name, ingredient_path(i)%>
+      </div><!--name-->
+      <div class="serving">
+        Serving Size: <%="#{i.serving_size_number} #{i.serving_size_unit}"%>
+      </div><!--serving-->
+  <%end%>
+</div><!--ingredient-->
