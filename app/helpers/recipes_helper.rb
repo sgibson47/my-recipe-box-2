@@ -10,16 +10,7 @@ module RecipesHelper
 
   def old_link
     link_to "Oldest to Newest", recipes_path(:sort => "old")
-  end
-
-  def most_link
-    link_to "Most to Least", recipes_path(:sort => "most")
-  end
-
-  def least_link
-    link_to "Least to Most", recipes_path(:sort => "least")
-  end
-      
+  end 
 
   def best_link
     link_to "Best to Worst", recipes_path(:sort => "best")

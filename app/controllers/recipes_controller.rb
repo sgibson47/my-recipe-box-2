@@ -85,10 +85,6 @@ class RecipesController < ApplicationController
       @recipes = Recipe.by_avg_rating_best
     when "worst"
       @recipes = Recipe.by_avg_rating_worst
-    when "most"
-      @recipes = Recipe.by_times_made_most
-    when "least"
-      @recipes = Recipe.by_times_made_least
     when "new"
       @recipes = Recipe.latest
     when "old"

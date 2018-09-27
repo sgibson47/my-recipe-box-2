@@ -11,12 +11,10 @@ class Recipe < ApplicationRecord
   scope :by_ingredient, -> (ingred_id) {includes(:ingredients).where(ingredients: {id: "#{ingred_id}"})}
   scope :by_avg_rating_worst, -> { joins(:makings).group("recipes.id").order("avg(makings.rating)") }
   scope :by_avg_rating_best, -> { joins(:makings).group("recipes.id").order("avg(makings.rating) desc") }
-  scope :by_times_made_most, -> { joins(:makings).group("recipes.id").order("count(makings.id) desc") }
-  scope :by_times_made_least, -> { joins(:makings).group("recipes.id").order("count(makings.id)") }
   scope :latest, -> { order(created_at: :desc) }
   scope :oldest, -> { order(:created_at) }
   scope :five, -> { limit(5) }
-
+end
   
 
   def times_made
@@ -25,6 +23,6 @@ class Recipe < ApplicationRecord
 
   def avg_rating
     makings.average("rating").to_s
-  end
+  
 
 end
