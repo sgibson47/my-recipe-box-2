@@ -1,9 +1,20 @@
-<h1><%=@ingredient.name%></h1>
+<div id="ingredients-show">
+  <h1 class="body-title"><%=@ingredient.name%></h1>
 
-<p>Serving Size: <%="#{@ingredient.serving_size_number} #{@ingredient.serving_size_unit}"%>
+  <div class="serving">
+    Serving Size: <%="#{@ingredient.serving_size_number} #{@ingredient.serving_size_unit}"%>
+  </div><!--serving-->
 
-<br>
+  <div class="edit_delete">
+    
+    <div class="edit block">
+      <%=link_to "Edit Ingredient", edit_ingredient_path(@ingredient) %>
+    </div><!--edit-->
 
-<%=link_to "Edit", edit_ingredient_path(@ingredient) %>
-  <br>
-<%=link_to "Delete", ingredient_path(@ingredient), method: :delete %>
+    <div class="delete block">
+      <%=link_to "Delete Ingredient", ingredient_path(@ingredient), method: :delete %>
+    </div><!--delete-->
+
+  </div><!--edit_delete-->
+
+</div><!--ingredients-show-->

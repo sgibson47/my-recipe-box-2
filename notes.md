@@ -108,8 +108,7 @@ ToDo:
             X - new
             X- edit
           - Ingredients
-            - index
-            - user index
+            X - index
             - show
             - new
             - edit
