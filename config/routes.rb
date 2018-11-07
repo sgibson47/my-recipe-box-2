@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/signin')
 
   get '/makings' => 'makings#index'
+
+  get '/for_assessment' => 'recipes#for_assessment'
 end

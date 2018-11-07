@@ -5,8 +5,10 @@ class Amount < ApplicationRecord
   validates :servings_per_recipe, presence: true
 
   def ingred_for_display
-    num = self.servings_per_recipe * ingredient.serving_size_number 
+    if ingredient
+      num = self.servings_per_recipe * ingredient.serving_size_number 
 
-    "#{num} #{self.ingredient.serving_size_unit} #{self.ingredient.name}" 
+      "#{num} #{self.ingredient.serving_size_unit} #{self.ingredient.name}"
+    end 
   end
 end
