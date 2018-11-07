@@ -4,9 +4,6 @@
     <%recipes.each do |r|%>
       <li>
         <%=link_to r.name, recipe_path(r)%>
-        <% r.amounts.each do |a| %>
-          <%= a.servings_per_recipe %> 
-        <%end%>
       </li>
     <%end%>
   </ol>
