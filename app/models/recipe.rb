@@ -15,7 +15,7 @@ class Recipe < ApplicationRecord
   scope :oldest, -> { order(:created_at) }
   scope :five, -> { limit(5) }
 
-end
+  scope :recipes_by_servings_per_recipe, -> {joins(:amounts).group("recipes.id").order("amounts.servings_per_recipe desc")}
   
 
   def times_made
@@ -24,6 +24,5 @@ end
 
   def avg_rating
     makings.average("rating").to_s
-  
-
+  end
 end
