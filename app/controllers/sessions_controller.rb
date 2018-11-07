@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-
     if params["code"]
       @user = User.find_or_create_by(email: auth['info']['email']) do |u|
         u.name = auth['info']['name']
@@ -14,12 +13,12 @@ class SessionsController < ApplicationController
         u.password = SecureRandom.urlsafe_base64
       end
       session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      redirect_to @user
     else
       @user = User.find_by(email: params[:email])
       if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        redirect_to user_path(@user)
+        redirect_to @user
       else
         flash[:message] = "Invalid email and password combination."
         redirect_to '/signin'
