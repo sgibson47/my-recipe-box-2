@@ -1,11 +1,15 @@
 <h1 class="body-title">Ingredients</h1>
-<div class="ingredients">
-  <% @ingredients.each do |i| %>
+
+<!-- How we used to display a list of all the ingredients -->
+<!-- <div class="ingredients">
+  <%# @ingredients.each do |i| %>
       <div class="name">
-        <%=link_to i.name, ingredient_path(i)%>
-      </div><!--name-->
-      <div class="serving">
-        Serving Size: <%="#{i.serving_size_number} #{i.serving_size_unit}"%>
-      </div><!--serving-->
-  <%end%>
-</div><!--ingredient-->
+        <%#=link_to i.name, ingredient_path(i)%>
+      </div><--name-->
+      <!-- <div class="serving">
+        Serving Size: <%#="#{i.serving_size_number} #{i.serving_size_unit}"%>
+      </div> --><!--serving-->
+  <%#end%>
+<!-- </div> -->
+
+<div id="ingredients-index"></div>
