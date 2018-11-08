@@ -4,7 +4,10 @@ class IngredientsController < ApplicationController
 
   def index
     @ingredients = Ingredient.all
-    render json: @ingredients, status: 200
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @ingredients, status: 200}
+    end
   end
 
   def new
