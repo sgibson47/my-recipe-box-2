@@ -23,7 +23,7 @@ $(document).ready(function(){
     }
   }
 
-  function displayFirstFiveIngredients(){
+  function displayIngredients(){
     for(let i of INGREDIENTS.slice(start, end)){
       $('#ingredients-index').append(i.createIngredientDivs())
     }
@@ -33,8 +33,22 @@ $(document).ready(function(){
     ingredients.forEach( (i) => {
       new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
     })
-    displayFirstFiveIngredients();
+    displayIngredients();
   });
+
+  $('#next').on('click', () =>{
+    //empty out current list
+    $('#ingredients-index').empty();
+
+    //increment start and end to grab next 5 itmes from collection
+    if(end < INGREDIENTS.length){
+      start += 5
+      end += 5
+    }
+
+    //display ingredients
+    displayIngredients();
+  })
 })
 
 
