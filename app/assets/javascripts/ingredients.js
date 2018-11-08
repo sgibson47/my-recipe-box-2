@@ -6,7 +6,8 @@ function makeIngredientClass(){
   let INGREDIENTS = []
 
   class Ingredient{
-    constructor(name, serving_size_number, serving_size_unit){
+    constructor(id, name, serving_size_number, serving_size_unit){
+      this.id = id
       this.name = name
       this.serving_size_number = serving_size_number
       this.serving_size_unit = serving_size_unit
