@@ -1,6 +1,7 @@
 $(document).ready(function(){
   makeIngredientClass();
   getAllIngredients();
+  displayAllIngredients();
 })
 
 function makeIngredientClass(){
@@ -16,12 +17,12 @@ function makeIngredientClass(){
       INGREDIENTS.push(this)
     }
 
-    createIngredientDivs(name, serving_size_number, serving_size_unit){
+    createIngredientDivs(){
       return `<div class="name">
-        <a href="/ingredients/${id}">${name}</a>
+        <a href="/ingredients/${this.id}">${this.name}</a>
       </div><!--name-->
       <div class="serving">
-        Serving Size: ${serving_size_number} ${serving_size_unit}
+        Serving Size: ${this.serving_size_number} ${this.serving_size_unit}
       </div> <!--serving-->`
     }
   }
@@ -40,3 +41,9 @@ function getAllIngredients(){
 // add event listeners to Previous and Next 
 // that use createIngredientDivs() to build HTML
 // and that inject new HTML into DOM
+
+function displayAllIngredients(){
+  for(let i of INGREDIENTS){
+    $('#ingredients-index').append(i.createIngredientDivs())
+  }
+}
