@@ -35,3 +35,8 @@ function getAllIngredients(){
   });
 }
 
+//display # on load
+//add Previous and Next buttons
+// add event listeners to Previous and Next 
+// that use createIngredientDivs() to build HTML
+// and that inject new HTML into DOM
