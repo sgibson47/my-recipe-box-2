@@ -21,17 +21,18 @@ $(document).ready(function(){
     }
   }
 
-  $.getJSON('/ingredients', (ingredients) => {
-    console.log(ingredients)
-    ingredients.forEach( (i) => {
-      new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
-    })
+  function displayAllIngredients(){
     for(let i of INGREDIENTS){
       $('#ingredients-index').append(i.createIngredientDivs())
     }
-  });
+  }
 
-    
+  $.getJSON('/ingredients', (ingredients) => {
+    ingredients.forEach( (i) => {
+      new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
+    })
+    displayAllIngredients();
+  });
 })
 
 
