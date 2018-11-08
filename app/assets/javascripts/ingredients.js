@@ -1,11 +1,5 @@
 $(document).ready(function(){
-  makeIngredientClass();
-  getAllIngredients();
-  displayAllIngredients();
-})
-
-function makeIngredientClass(){
-  let INGREDIENTS = []
+  var INGREDIENTS = [] 
 
   class Ingredient{
     constructor(id, name, serving_size_number, serving_size_unit){
@@ -26,15 +20,20 @@ function makeIngredientClass(){
       </div> <!--serving-->`
     }
   }
-}
 
-function getAllIngredients(){
-  $.get('/ingredients', (ingredients) => {
+  $.getJSON('/ingredients', (ingredients) => {
+    console.log(ingredients)
     ingredients.forEach( (i) => {
       new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
     })
+    for(let i of INGREDIENTS){
+      $('#ingredients-index').append(i.createIngredientDivs())
+    }
   });
-}
+
+    
+})
+
 
 //display # on load
 //add Previous and Next buttons
@@ -42,8 +41,4 @@ function getAllIngredients(){
 // that use createIngredientDivs() to build HTML
 // and that inject new HTML into DOM
 
-function displayAllIngredients(){
-  for(let i of INGREDIENTS){
-    $('#ingredients-index').append(i.createIngredientDivs())
-  }
-}
+
