@@ -55,7 +55,7 @@ $(document).ready(function(){
     //empty out current list
     $('#ingredients-index').empty();
 
-    //increment start and end to grab next 5 itmes from collection
+    //decrement start and end to grab next 5 itmes from collection
     if(start > 0){
       start -= 5
       end -= 5
