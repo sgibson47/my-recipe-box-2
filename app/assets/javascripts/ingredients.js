@@ -26,3 +26,11 @@ function makeIngredientClass(){
   }
 }
 
+function getAllIngredients(){
+  $.get('/ingredients', (ingredients) => {
+    ingredients.forEach( (i) => {
+      new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
+    })
+  });
+}
+
