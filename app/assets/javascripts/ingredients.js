@@ -1,5 +1,7 @@
 $(document).ready(function(){
-  var INGREDIENTS = [] 
+  let INGREDIENTS = [] 
+  let start = 0
+  let end = 5
 
   class Ingredient{
     constructor(id, name, serving_size_number, serving_size_unit){
@@ -21,8 +23,8 @@ $(document).ready(function(){
     }
   }
 
-  function displayAllIngredients(){
-    for(let i of INGREDIENTS){
+  function displayFirstFiveIngredients(){
+    for(let i of INGREDIENTS.slice(start, end)){
       $('#ingredients-index').append(i.createIngredientDivs())
     }
   }
@@ -31,7 +33,7 @@ $(document).ready(function(){
     ingredients.forEach( (i) => {
       new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
     })
-    displayAllIngredients();
+    displayFirstFiveIngredients();
   });
 })
 
