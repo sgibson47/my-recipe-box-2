@@ -2,11 +2,6 @@
   <%=render "filter_bar"%>
   
   <h1 class="body-title">Recipes</h1>
-
-  <!-- Used to display recipes by rendering a partial and passing it a collection of recipes-->
-<!--   <%#=render "display_recipes", recipes: @recipes%> -->
-
-<!-- Next, let's use JS to fill this div with HTML displaying a collection of recipes -->
-  <div id="recipes-index-div"></div>
+  <%=render "display_recipes", recipes: @recipes%>
   
 </div><!-- recipes-index -->
