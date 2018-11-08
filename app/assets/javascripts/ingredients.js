@@ -13,5 +13,15 @@ function makeIngredientClass(){
 
       INGREDIENTS.push(this)
     }
+
+    createIngredientDivs(name, serving_size_number, serving_size_unit){
+      return `<div class="name">
+        <a href="/ingredients/${id}">${name}</a>
+      </div><!--name-->
+      <div class="serving">
+        Serving Size: ${serving_size_number} ${serving_size_unit}
+      </div> <!--serving-->`
+    }
   }
 }
+
