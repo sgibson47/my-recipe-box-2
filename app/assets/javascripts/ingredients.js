@@ -49,6 +49,21 @@ $(document).ready(function(){
     //display ingredients
     displayIngredients();
   })
+
+
+  $('#previous').on('click', () =>{
+    //empty out current list
+    $('#ingredients-index').empty();
+
+    //increment start and end to grab next 5 itmes from collection
+    if(start > 0){
+      start -= 5
+      end -= 5
+    }
+
+    //display ingredients
+    displayIngredients();
+  })
 })
 
 
