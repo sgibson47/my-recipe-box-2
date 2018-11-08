@@ -1,4 +1,4 @@
-$(document).ready(function(){
+document.addEventListener("turbolinks:load", function(){
   let INGREDIENTS = [] 
   let start = 0
   let end = 5
