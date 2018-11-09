@@ -1,24 +1,3 @@
 <div id="recipe-show" data-id="<%=@recipe.id%>">
-  <h1><%=@recipe.name%>'s Page</h1>
 
-  
-  <div class="block ingred-list">
-    <h3>Ingredients:</h3>
-    <%= render "display_ingredients_for_recipe_show", recipe: @recipe %>
-  </div><!--ingred-ist-->
-
-  
-  <div class="block instructions">
-    <h3>Instructions</h3>
-    <p><%=@recipe.instructions%></p>
-  </div><!--instructions-->
-
-  <div class="edit_delete">
-    <div class="edit block">
-      <%=link_to "Edit Recipe", edit_recipe_path(@recipe) %>
-    </div><!--edit-->
-    <div class="delete block">
-      <%=link_to "Delete Recipe", recipe_path(@recipe), method: :delete %>
-    </div><!--delete-->
-  </div><!--edit_delete-->
 </div><!--recipe-show-->
