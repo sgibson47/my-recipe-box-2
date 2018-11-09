@@ -1,39 +1,23 @@
 document.addEventListener("turbolinks:load", function(){
   let id = document.getElementById("recipe-show").dataset.id
 
-  class Ingredient{
-    constructor(id, name, serving_size_number, serving_size_unit){
+  class Recipe{
+    constructor(id, name, instructions, user_id, amounts, ingredients){
       this.id = id
       this.name = name
-      this.serving_size_number = serving_size_number
-      this.serving_size_unit = serving_size_unit
-    }
-
-    createIngredientDivs(){
-      return `<div class="name">
-        <a href="/ingredients/${this.id}">${this.name}</a>
-      </div><!--name-->
-      <div class="serving">
-        Serving Size: ${this.serving_size_number} ${this.serving_size_unit}
-      </div> <!--serving-->`
-    }
-  }
-
-  function displayIngredients(){
-    for(let i of INGREDIENTS.slice(start, end)){
-      $('#ingredients-index').append(i.createIngredientDivs())
+      this.instructions = instructions
+      this.user_id = user_id
+      this.amounts = amounts
+      this.ingredients = ingredients
     }
   }
 
   $.getJSON('/recipes/'+id, (recipe) => {
     
     console.log(recipe)
-    // ingredients.forEach( (i) => {
-    //   new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
-    // })
-    // displayIngredients();
+    let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients)
+    console.log(newGuy)
   });
 
 })
-
 
