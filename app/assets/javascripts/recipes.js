@@ -1,4 +1,5 @@
 document.addEventListener("turbolinks:load", function(){
+  let id = document.getElementById("recipe-show").dataset.id
 
   class Ingredient{
     constructor(id, name, serving_size_number, serving_size_unit){
@@ -24,11 +25,13 @@ document.addEventListener("turbolinks:load", function(){
     }
   }
 
-  $.getJSON('/ingredients', (ingredients) => {
-    ingredients.forEach( (i) => {
-      new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
-    })
-    displayIngredients();
+  $.getJSON('/recipes/'+id, (recipe) => {
+    
+    console.log(recipe)
+    // ingredients.forEach( (i) => {
+    //   new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
+    // })
+    // displayIngredients();
   });
 
 })
