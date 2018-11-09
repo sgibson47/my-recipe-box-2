@@ -31,7 +31,38 @@ document.addEventListener("turbolinks:load", function(){
         </div><!--delete-->
       </div><!--edit_delete-->`
     }
+
   }
+
+
+  function createIngredientDiv(){
+    return `<div class="block ingred-list">
+      <h3>Ingredients:</h3>
+      <ul>
+      </ul>
+    </div><!--ingred-ist-->`
+  }
+
+  function createIngredientListItems(amounts, ingredients){
+    var amountsArray =[]
+    for(let a of amounts){
+      amountsArray.push(a.servings_per_recipe)
+    }
+
+    var listItems = []
+
+    ingredients.forEach(function(ingredient, index, arr){
+      var num = amountsArray[index] * ingredient.serving_size_number 
+      listItems.push(`<li>${num} ${ingredient.serving_size_unit} ${ingredient.name}</li>`)
+    })
+    
+    return listItems.join('')
+  }
+
+  function displayIngredients(amounts, ingredients){
+    $('.ingred-list ul').append(createIngredientListItems(amounts, ingredients));
+  }
+
 
   $.getJSON('/recipes/'+id, (recipe) => {
     $('#recipe-show').empty()
@@ -39,22 +70,20 @@ document.addEventListener("turbolinks:load", function(){
     let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients)
 
     let header = newGuy.createRecipeHeader();
+    let ingredientsDiv = createIngredientDiv();
     let instructions = newGuy.createInstructionsDiv();
     let editDelete = newGuy.createEditDeleteDiv();
 
-    let html = header + instructions + editDelete
+    let html = header + ingredientsDiv + instructions + editDelete
 
-    $('#recipe-show').append(html)
+    $('#recipe-show').append(html);
+
+    displayIngredients(newGuy.amounts, newGuy.ingredients);
   });
 
 })
 
 
-  
-  // <div class="block ingred-list">
-  //   <h3>Ingredients:</h3>
-  //   <%= render "display_ingredients_for_recipe_show", recipe: @recipe %>
-  // </div><!--ingred-ist-->
 
 
   
