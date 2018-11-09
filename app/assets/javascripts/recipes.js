@@ -63,23 +63,29 @@ document.addEventListener("turbolinks:load", function(){
     $('.ingred-list ul').append(createIngredientListItems(amounts, ingredients));
   }
 
+  function createShowHtml(recipe){
+    let header = recipe.createRecipeHeader();
+    let ingredientsDiv = createIngredientDiv();
+    let instructions = recipe.createInstructionsDiv();
+    let editDelete = recipe.createEditDeleteDiv();
+
+    return header + ingredientsDiv + instructions + editDelete
+  }
+
 
   $.getJSON('/recipes/'+id, (recipe) => {
     $('#recipe-show').empty()
 
     let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients)
 
-    let header = newGuy.createRecipeHeader();
-    let ingredientsDiv = createIngredientDiv();
-    let instructions = newGuy.createInstructionsDiv();
-    let editDelete = newGuy.createEditDeleteDiv();
-
-    let html = header + ingredientsDiv + instructions + editDelete
+    let html = createShowHtml(newGuy)
 
     $('#recipe-show').append(html);
 
     displayIngredients(newGuy.amounts, newGuy.ingredients);
   });
+
+
 
 })
 
