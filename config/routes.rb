@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/signin')
 
   get '/makings' => 'makings#index'
+
+  post '/makingsFromRecipe', to: 'makings#createFromRecipe'
 end
