@@ -29,6 +29,14 @@ class MakingsController < ApplicationController
     end
   end
 
+  def createFromRecipe
+    @making = Making.new(makings_params)
+    @making.user = User.find(params[:user_id])
+    if @making.save
+      render json: @making, status: 200
+    end
+  end
+
   def edit
   end
 
