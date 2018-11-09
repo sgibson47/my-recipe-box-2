@@ -24,30 +24,37 @@ document.addEventListener("turbolinks:load", function(){
     createEditDeleteDiv(){
       return `<div class="edit_delete">
         <div class="edit block">
-          <a href="/recipes/${this.id}/edit">"Edit Recipe"</a>
+          <a href="/recipes/${this.id}/edit">Edit Recipe</a>
         </div><!--edit-->
         <div class="delete block">
-          <a data-confirm="Are you sure?" data-method="delete" href="/recipes/${this.id}">"Delete Recipe"</a>
+          <a data-confirm="Are you sure?" data-method="delete" href="/recipes/${this.id}">Delete Recipe</a>
         </div><!--delete-->
       </div><!--edit_delete-->`
     }
   }
 
   $.getJSON('/recipes/'+id, (recipe) => {
-    
-    console.log(recipe)
+    $('#recipe-show').empty()
+
     let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients)
-    console.log(newGuy)
+
+    let header = newGuy.createRecipeHeader();
+    let instructions = newGuy.createInstructionsDiv();
+    let editDelete = newGuy.createEditDeleteDiv();
+
+    let html = header + instructions + editDelete
+
+    $('#recipe-show').append(html)
   });
 
 })
 
 
   
-  <div class="block ingred-list">
-    <h3>Ingredients:</h3>
-    <%= render "display_ingredients_for_recipe_show", recipe: @recipe %>
-  </div><!--ingred-ist-->
+  // <div class="block ingred-list">
+  //   <h3>Ingredients:</h3>
+  //   <%= render "display_ingredients_for_recipe_show", recipe: @recipe %>
+  // </div><!--ingred-ist-->
 
 
   
