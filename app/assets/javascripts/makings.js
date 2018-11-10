@@ -11,6 +11,10 @@ document.addEventListener("turbolinks:load", function(){
 
       MAKINGS.push(this)
     }
+
+    createListItems(){
+      return `<li>Rating:  ${this.rating} stars <br>Notes: ${this.notes}</li>`
+    }
   }
 
   $('#new_making_of_recipe').on('submit', function(e){
