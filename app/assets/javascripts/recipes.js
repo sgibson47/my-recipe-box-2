@@ -2,13 +2,14 @@ document.addEventListener("turbolinks:load", function(){
   let id = document.getElementById("recipe-show").dataset.id
 
   class Recipe{
-    constructor(id, name, instructions, user_id, amounts, ingredients){
+    constructor(id, name, instructions, user_id, amounts, ingredients, makings){
       this.id = id
       this.name = name
       this.instructions = instructions
       this.user_id = user_id
       this.amounts = amounts
       this.ingredients = ingredients
+      this.makings = makings
     }
 
     createRecipeHeader(){
