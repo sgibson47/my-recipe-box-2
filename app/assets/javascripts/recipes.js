@@ -1,5 +1,6 @@
 document.addEventListener("turbolinks:load", function(){
   let id = document.getElementById("recipe-show").dataset.id
+  let MAKINGS = []
 
   class Recipe{
     constructor(id, name, instructions, user_id, amounts, ingredients, makings){
@@ -32,9 +33,23 @@ document.addEventListener("turbolinks:load", function(){
         </div><!--delete-->
       </div><!--edit_delete-->`
     }
-
   }
 
+  class Making{
+    constructor(id, rating, notes, user_id, recipe_id){
+      this.id = id
+      this.rating = rating
+      this.notes = notes
+      this.user_id = user_id
+      this.recipe_id = recipe_id
+
+      MAKINGS.push(this)
+    }
+
+    createListItem(){
+      return `<li>Rating:  ${this.rating} stars <br>Notes: ${this.notes}</li>`
+    }
+  }
 
   function createIngredientDiv(){
     return `<div class="block ingred-list">
@@ -60,8 +75,22 @@ document.addEventListener("turbolinks:load", function(){
     return listItems.join('')
   }
 
+  function createMakingListItems(makings){
+    var makingsListItemsToDisplay = []
+    makings.forEach(function(making, index, arr){
+      newMaking = new Making(making.id, making.rating, making.notes, making.user_id, making.recipe_id)
+      makingsListItemsToDisplay.push(newMaking.createListItem());
+    })
+    return makingsListItemsToDisplay.join('')
+  }
+
   function displayIngredients(amounts, ingredients){
     $('.ingred-list ul').append(createIngredientListItems(amounts, ingredients));
+  }
+
+  function displayMakings(makings){
+    var makingsToDisplay = makings.slice(0, (makings.length - 1))
+    $('#recipe-makings ul').append(createMakingListItems(makingsToDisplay));
   }
 
   function createShowHtml(recipe){
@@ -77,16 +106,38 @@ document.addEventListener("turbolinks:load", function(){
   $.getJSON('/recipes/'+id, (recipe) => {
     $('#recipe-show').empty()
 
-    let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients, recipe.makings)
+    let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients, recipe.makings);
 
-    let html = createShowHtml(newGuy)
+    let html = createShowHtml(newGuy);
 
     $('#recipe-show').append(html);
 
     displayIngredients(newGuy.amounts, newGuy.ingredients);
+
+    displayMakings(newGuy.makings);
+
   });
 
+  $('#new_making_of_recipe').on('submit', function(e){
+    e.preventDefault();
+    console.log(this)
+  })
+
 })
+
+// <div id="recipe-making-form">
+//     <form class="new_making" id="new_making_of_recipe" action="/users/4/makings" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="ywq59YWpDsAkIU8EHV5Ix67Iax/TNtBvLyGSEQmA2a2/rq2+6mj6jjEu63ar4Hpzoxi4xxqiHggBAj/vNZjstA==">
+//       <input value="4" type="hidden" name="making[recipe_id]" id="making_recipe_id">
+//       <label for="making_rating">Rating</label>
+//       <input class="form_fields" type="number" name="making[rating]" id="making_rating">
+//       <label for="making_notes">Notes</label>
+//       <input class="form_fields" type="text" name="making[notes]" id="making_notes">
+//       <br>
+//       <br>
+//       <br>
+//       <br>
+//     <input type="submit" name="commit" value="Create Making" class="submit_class" data-disable-with="Create Making">
+// </form>  </div>
 
 
 
