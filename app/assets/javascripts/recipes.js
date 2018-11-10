@@ -85,12 +85,6 @@ document.addEventListener("turbolinks:load", function(){
     displayIngredients(newGuy.amounts, newGuy.ingredients);
   });
 
-
-  $('#new_making_of_recipe').on('submit', function(e){
-    e.preventDefault();
-    console.log(this)
-  })
-
 })
 
 

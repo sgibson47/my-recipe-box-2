@@ -1,1 +1,4 @@
-makings.js
+$('#new_making_of_recipe').on('submit', function(e){
+    e.preventDefault();
+    console.log(this)
+  })
