@@ -8,6 +8,8 @@ document.addEventListener("turbolinks:load", function(){
       this.notes = notes
       this.user_id = user_id
       this.recipe_id = recipe_id
+
+      MAKINGS.push(this)
     }
   }
 
