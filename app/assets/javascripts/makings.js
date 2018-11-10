@@ -17,6 +17,19 @@ document.addEventListener("turbolinks:load", function(){
     }
   }
 
+  function makingsForDisplay(makings){
+    makingsToDislay = []
+    makings.forEach(function(making, index, arr){
+      newMaking = new Making(making.id, making.rating, making.notes, making.user_id, making.recipe_id)
+      makingsToDislay.push(newMaking.createListItems());
+      return makingsToDislay.join('')
+    })
+  }
+
+  function displayMakings(makings){
+    $('.recipe-makings ul').append(makingsForDisplay(makings));
+  }
+
   $('#new_making_of_recipe').on('submit', function(e){
     e.preventDefault();
     console.log(this)
