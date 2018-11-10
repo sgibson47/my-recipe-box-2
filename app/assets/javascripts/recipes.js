@@ -121,23 +121,12 @@ document.addEventListener("turbolinks:load", function(){
   $('#new_making_of_recipe').on('submit', function(e){
     e.preventDefault();
     console.log(this)
+
+    var values = $(this).serialize();
   })
 
 })
 
-// <div id="recipe-making-form">
-//     <form class="new_making" id="new_making_of_recipe" action="/users/4/makings" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="ywq59YWpDsAkIU8EHV5Ix67Iax/TNtBvLyGSEQmA2a2/rq2+6mj6jjEu63ar4Hpzoxi4xxqiHggBAj/vNZjstA==">
-//       <input value="4" type="hidden" name="making[recipe_id]" id="making_recipe_id">
-//       <label for="making_rating">Rating</label>
-//       <input class="form_fields" type="number" name="making[rating]" id="making_rating">
-//       <label for="making_notes">Notes</label>
-//       <input class="form_fields" type="text" name="making[notes]" id="making_notes">
-//       <br>
-//       <br>
-//       <br>
-//       <br>
-//     <input type="submit" name="commit" value="Create Making" class="submit_class" data-disable-with="Create Making">
-// </form>  </div>
 
 
 
