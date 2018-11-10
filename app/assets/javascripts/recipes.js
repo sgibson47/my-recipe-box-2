@@ -77,7 +77,7 @@ document.addEventListener("turbolinks:load", function(){
   $.getJSON('/recipes/'+id, (recipe) => {
     $('#recipe-show').empty()
 
-    let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients)
+    let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients, recipe.makings)
 
     let html = createShowHtml(newGuy)
 
