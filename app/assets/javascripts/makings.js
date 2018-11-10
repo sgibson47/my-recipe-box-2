@@ -1,5 +1,7 @@
 document.addEventListener("turbolinks:load", function(){
-  class Recipe{
+  
+
+  class Making{
     constructor(id, rating, notes, user_id, recipe_id){
       this.id = id
       this.rating = rating
