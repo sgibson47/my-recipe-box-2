@@ -123,6 +123,13 @@ document.addEventListener("turbolinks:load", function(){
     console.log(this)
 
     var values = $(this).serialize();
+
+    var making = $.post('/makingsFromRecipe', values);
+ 
+    making.done(function(data) {
+      newMaking = new Making(data.id, data.rating, data.notes, data.user_id, data.recipe_id)
+      $('#recipe-makings ul').append(newMaking.createListItem());
+    });
   })
 
 })
