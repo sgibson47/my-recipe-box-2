@@ -16,7 +16,7 @@
 
 <div id="recipe-making-form">
   <h3>Did you make <%=@recipe.name%>? How did it go?</h3>
-  <%=form_for([@user, @making])do |f|%>
+  <%=form_for([@user, @making], :html => { :id => "new_making_of_recipe" })do |f|%>
     <%= f.hidden_field :recipe_id, :value => @recipe.id %>
     <%= f.label :rating%>
     <%= f.number_field :rating, class: "form_fields"%>

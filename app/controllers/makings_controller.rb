@@ -31,7 +31,7 @@ class MakingsController < ApplicationController
 
   def createFromRecipe
     @making = Making.new(makings_params)
-    @making.user = User.find(params[:user_id])
+    @making.user = current_user
     if @making.save
       render json: @making, status: 200
     end
