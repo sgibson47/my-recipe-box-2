@@ -1,5 +1,5 @@
 document.addEventListener("turbolinks:load", function(){
-  
+  let MAKINGS = []
 
   class Making{
     constructor(id, rating, notes, user_id, recipe_id){
