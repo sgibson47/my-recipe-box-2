@@ -2,16 +2,18 @@
 
 </div><!--recipe-show-->
 
-<div id="recipe-makings" class="block instructions">
+<div class="block instructions">
   <h3>Times Users Made <%=@recipe.name%></h3>
-  <ul>
-    <%@recipe.makings.each do |m|%>
-      <li>
-        Rating:  <%=m.rating%> stars <br>
-        Notes: <%=m.notes%>
-      </li>
-    <%end%>
-  </ul>
+  <div id="recipe-makings" >
+    <ul>
+      <%@recipe.makings.each do |m|%>
+        <li>
+          Rating:  <%=m.rating%> stars <br>
+          Notes: <%=m.notes%>
+        </li>
+      <%end%>
+    </ul>
+  </div>
 </div>
 
 <div id="recipe-making-form">

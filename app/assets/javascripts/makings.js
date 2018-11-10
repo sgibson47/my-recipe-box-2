@@ -7,7 +7,6 @@ document.addEventListener("turbolinks:load", function(){
       this.user_id = user_id
       this.recipe_id = recipe_id
     }
-
   }
 
   $('#new_making_of_recipe').on('submit', function(e){
