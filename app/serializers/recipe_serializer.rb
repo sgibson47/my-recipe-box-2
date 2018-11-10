@@ -3,4 +3,5 @@ class RecipeSerializer < ActiveModel::Serializer
 
   has_many :amounts
   has_many :ingredients
+  has_many :makings
 end
