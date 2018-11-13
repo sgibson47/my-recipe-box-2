@@ -89,7 +89,7 @@ document.addEventListener("turbolinks:load", function(){
   }
 
   function displayMakings(makings){
-    var makingsToDisplay = makings.slice(0, (makings.length - 1))
+    var makingsToDisplay = makings
     $('#recipe-makings ul').append(createMakingListItems(makingsToDisplay));
   }
 
