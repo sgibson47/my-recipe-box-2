@@ -153,7 +153,43 @@ When I navigated to my ingredients index page the GET request would fire, all of
 
 <h3> Refactoring the Show Page </h3>
 
+Next, I turned to refactoring the recipes show page. I had rendered the details of a particular recipe by passing an instance variable that represented a recipe to the recies show view and then displaying attributes of the passed in recipe with ERB and a partial that handled iterating through and formatting a recipe's ingredients for display.
 
+My recipes#show controller action looked like this:
+
+before_action :find_recipe_by_params_id, only: [:update, :destroy, :edit, :show]
+
+def show
+end
+
+private
+
+  def find_recipe_by_params_id
+    @recipe = Recipe.find(params[:id])
+  end
+
+And, my recipes show view looked like this: 
+
+<div id="recipe-show">
+  <h1><%=@recipe.name%>'s Page</h1>
+  <div class="block ingred-list"> 
+    <h3>Ingredients:</h3> 
+    <%= render "display_ingredients_for_recipe_show", recipe: @recipe %>  
+  </div><!--ingred-ist--> 
+    
+  <div class="block instructions">  
+    <h3>Instructions</h3> 
+    <p><%=@recipe.instructions%></p>  
+  </div><!--instructions--> 
+   <div class="edit_delete">  
+    <div class="edit block">  
+      <%=link_to "Edit Recipe", edit_recipe_path(@recipe) %>  
+    </div><!--edit--> 
+    <div class="delete block">  
+      <%=link_to "Delete Recipe", recipe_path(@recipe), method: :delete %>  
+    </div><!--delete--> 
+  </div><!--edit_delete-->  
+</div><!--recipe-show-->  </div><!--recipe-show--> 
 
 
 
