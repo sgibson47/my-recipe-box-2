@@ -94,7 +94,8 @@ document.addEventListener("turbolinks:load", function(){
   }
 
   function createNewMakingForm(){
-    return `<form class="new_making" id="new_making_of_recipe" action="#" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="lyFb6igf4qs2gQQAIeMBgZa7B9Y57eNZUt7Qnh4+q+aa7cRvdViUOSkFsyeVFoZPMX20vIfrLeZcqVEeHUstgg==">
+    return `<form class="new_making" id="new_making_of_recipe" accept-charset="UTF-8">
+        <input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="lyFb6igf4qs2gQQAIeMBgZa7B9Y57eNZUt7Qnh4+q+aa7cRvdViUOSkFsyeVFoZPMX20vIfrLeZcqVEeHUstgg==">
         <input value="${id}" type="hidden" name="making[recipe_id]" id="making_recipe_id">
         <label for="making_rating">Rating</label>
         <input class="form_fields" type="number" name="making[rating]" id="making_rating">
@@ -151,6 +152,8 @@ document.addEventListener("turbolinks:load", function(){
       newMaking = new Making(data.id, data.rating, data.notes, data.user_id, data.recipe_id)
       $('#recipe-makings ul').append(newMaking.createListItem());
     });
+
+    return false;
   })
 
 })
