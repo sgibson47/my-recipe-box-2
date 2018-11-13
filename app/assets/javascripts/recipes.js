@@ -94,7 +94,11 @@ document.addEventListener("turbolinks:load", function(){
   }
 
   function createNewMakingForm(){
-    
+
+  }
+
+  function displayNewMakingForm(){
+    $('#recipe-making-form').append(createNewMakingForm());
   }
 
   function createShowHtml(recipe){
