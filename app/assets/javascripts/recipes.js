@@ -89,29 +89,10 @@ document.addEventListener("turbolinks:load", function(){
   }
 
   function displayMakings(makings){
-    var makingsToDisplay = makings
+    var makingsToDisplay = makings.slice(0, (makings.length - 1))
     $('#recipe-makings ul').append(createMakingListItems(makingsToDisplay));
   }
 
-  function createNewMakingForm(){
-    return `<form class="new_making" id="new_making_of_recipe" accept-charset="UTF-8">
-        <input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="lyFb6igf4qs2gQQAIeMBgZa7B9Y57eNZUt7Qnh4+q+aa7cRvdViUOSkFsyeVFoZPMX20vIfrLeZcqVEeHUstgg==">
-        <input value="${id}" type="hidden" name="making[recipe_id]" id="making_recipe_id">
-        <label for="making_rating">Rating</label>
-        <input class="form_fields" type="number" name="making[rating]" id="making_rating">
-        <label for="making_notes">Notes</label>
-        <input class="form_fields" type="text" name="making[notes]" id="making_notes">
-        <br>
-        <br>
-        <br>
-        <br>
-      <input type="submit" name="commit" value="Create Making" class="submit_class" data-disable-with="Create Making">
-    </form>`
-  }
-
-  function displayNewMakingForm(){
-    $('#recipe-making-form').append(createNewMakingForm());
-  }
 
   function createShowHtml(recipe){
     let header = recipe.createRecipeHeader();
@@ -135,14 +116,12 @@ document.addEventListener("turbolinks:load", function(){
     displayIngredients(newGuy.amounts, newGuy.ingredients);
 
     displayMakings(newGuy.makings);
-
-    displayNewMakingForm();
-
   });
 
-  $('#new_making_of_recipe').on('submit', function(e){
+  $('#new_making_of_recipe').submit(function(e){
     e.preventDefault();
-    console.log(this)
+
+    let that = this
 
     var values = $(this).serialize();
 
@@ -151,10 +130,9 @@ document.addEventListener("turbolinks:load", function(){
     making.done(function(data) {
       newMaking = new Making(data.id, data.rating, data.notes, data.user_id, data.recipe_id)
       $('#recipe-makings ul').append(newMaking.createListItem());
+      that.reset();
     });
-
-    return false;
-  })
+  });
 
 })
 
