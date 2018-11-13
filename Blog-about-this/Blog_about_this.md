@@ -149,7 +149,7 @@ document.addEventListener("turbolinks:load", function(){
   . . . 
 }
 
-When I navigated to my ingredients index page the GET request would fire, all of the ingredients would be stored in the INGREDIENTS collection, and the first five ingredients would be displayed. From there, a user could view five ingredients at a time by clicking on the "Next" and "Previous" buttons. With all that in place, I had satisfied the first and fifth requirements.  
+With all that in place, I had satisfied the first and fifth requirements. When I navigated to my ingredients index page the GET request would fire, all of the ingredients would be stored in the INGREDIENTS collection, and the first five ingredients would be displayed. From there, a user could view five ingredients at a time by clicking on the "Next" and "Previous" buttons.  
 
 <h3> Refactoring the Show Page </h3>
 
@@ -191,9 +191,19 @@ And, my recipes show view looked like this:
   </div><!--edit_delete-->  
 </div><!--recipe-show-->  </div><!--recipe-show--> 
 
+<h4> Rendering a Recipe's Details </h4>
+
+To meet the project requirements that I render at least one show page via JavaScript and an Active Model Serialization JSON Backend and render at least one 'has-many' relationship through JSON using JavaScript, I made changes to both of these items, generated a serializer, and created a new file to hold the JavaScript that would retrieve and display the recipe saved in my database. 
 
 
+<h4> Adding a Form that Submits Dynamically </h4>
 
+To meet the project requirement that I render a form for creating a resource that submits dynamically, I made changes to my recipes serializer and added JS to my recipes.js file that would display the recipe's makings, render a form to create a new making, and submit the form without navigating away from the show page.
+
+
+With all that in place, I had satisfied the second, third and fourth requirements. When I navigated to my recipes show page the GET request would fire, the recipe would retrieve, the recipe's makings would be stored in the MAKINGS collection, and the recipe's details, current list of makings, and a form to create a new making would be displayed. If a user submitted the form, a new making associated with this recipe would be created and displayed without reloading the page or navigating away. 
+
+Check out the code at: https://github.com/sgibson47/my-recipe-box-2
 
 
 
