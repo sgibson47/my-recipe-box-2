@@ -93,6 +93,10 @@ document.addEventListener("turbolinks:load", function(){
     $('#recipe-makings ul').append(createMakingListItems(makingsToDisplay));
   }
 
+  function createNewMakingForm(){
+    
+  }
+
   function createShowHtml(recipe){
     let header = recipe.createRecipeHeader();
     let ingredientsDiv = createIngredientDiv();
