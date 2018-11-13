@@ -124,6 +124,8 @@ document.addEventListener("turbolinks:load", function(){
 
     displayMakings(newGuy.makings);
 
+    displayNewMakingForm();
+
   });
 
   $('#new_making_of_recipe').on('submit', function(e){
