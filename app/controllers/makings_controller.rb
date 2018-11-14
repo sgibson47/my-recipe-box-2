@@ -2,6 +2,7 @@ class MakingsController < ApplicationController
   before_action :redirect_if_not_logged_in
   before_action :find_making_by_params_id, only: [:update, :destroy, :edit, :show]
   before_action :redirect_if_making_belongs_to_another_user, only: [:update, :destroy, :edit]
+  skip_before_action :verify_authenticity_token, only: [:createFromRecipe]
 
   def index
     if params[:user_id]

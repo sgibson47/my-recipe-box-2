@@ -5,7 +5,7 @@
   <div class="block instructions">
     <h3>Did you make <%=@recipe.name%>? How did it go?</h3>
     <div id="recipe-making-form">
-      <%=form_for([@user, @making], :html => { :id => "new_making_of_recipe" })do |f|%>       
+      <%=form_for([@user, @making], :url => '/makingsFromRecipe', :html => { :id => "new_making_of_recipe"})do |f|%>       
         <%= f.hidden_field :recipe_id, :value => @recipe.id %>  
         <%= f.label :rating%> 
         <%= f.number_field :rating, class: "form_fields"%>  
@@ -15,9 +15,13 @@
         <br>  
         <br>  
         <br>  
-        <%=f.submit :class => "submit_class"%>  
+        <button id="create-recipe-making">Create Making</button>  
       <%end%>
     </div>
   </div>
 
 </div><!--recipe-show-->
+
+<script>
+  getRecipe();
+</script>

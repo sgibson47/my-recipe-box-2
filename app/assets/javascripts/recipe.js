@@ -75,8 +75,6 @@ const createIngredientListItems = function (amounts, ingredients){
   }
 
 const createMakingListItems = function (makings){
-    console.log(makings)
-    console.log(makings.length)
     let makingsListItemsToDisplay = []
     let makingsForEach = makings.slice(0, (makings.length-1))
     makingsForEach.forEach(function(making, index, arr){
@@ -125,24 +123,45 @@ const getRecipe = function(){
   });
 }
 
+// document.addEventListener("turbolinks:load", function(){
+//   $('#new_making_of_recipe').on('submit', function(e){
+//     e.preventDefault();
+    
+//     let that = this
+
+//     let values = $(this).serialize();
+
+//     console.log(values)
+
+//     let making = $.post('/makingsFromRecipe', values);
+
+//     making.done(function(data) {
+//       newMaking = new Making(data.id, data.rating, data.notes, data.user_id, data.recipe_id)
+//       let newMakingHTML = newMaking.createListItem();
+//       $('#recipe-makings ul').append(newMakingHTML);
+//     });
+
+//     this.reset();
+//   })
+// })
+
 document.addEventListener("turbolinks:load", function(){
-
-  $('body').on('submit','#new_making_of_recipe', function(e){
+  $('#create-recipe-making').on('click', function(e){
     e.preventDefault();
+    $.ajax({
+      type:"POST",
+      url: '/makingsFromRecipe',
+      data: $('#new_making_of_recipe').serialize(),
+      success: function(data){
+        newMaking = new Making(data.id, data.rating, data.notes, data.user_id, data.recipe_id)
+        let newMakingHTML = newMaking.createListItem();
+        $('#recipe-makings ul').append(newMakingHTML);
+        $('#new_making_of_recipe').trigger('reset');
+      }
+    })
 
-    let that = this
-
-    let values = $(this).serialize();
-
-    let making = $.post('/makingsFromRecipe', values);
- 
-    making.done(function(data) {
-      newMaking = new Making(data.id, data.rating, data.notes, data.user_id, data.recipe_id)
-      let newMakingHTML = newMaking.createListItem();
-      $('#recipe-makings ul').append(newMakingHTML);
-      that.reset();
-    });
-  });
+    
+  })
 })
 
 
