@@ -18,7 +18,7 @@
     }
   }
 
-  function displayIngredients(){
+  const displayIngredients = function(){
     for(let i of INGREDIENTS.slice(start, end)){
       $('#ingredients-index').append(i.createIngredientDivs())
     }
