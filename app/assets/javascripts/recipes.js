@@ -103,7 +103,6 @@ document.addEventListener("turbolinks:load", function(){
     return header + ingredientsDiv + instructions + editDelete
   }
 
-
   $.getJSON('/recipes/'+id, (recipe) => {
     $('#recipe-details').empty()
 
@@ -118,23 +117,27 @@ document.addEventListener("turbolinks:load", function(){
     displayMakings(newGuy.makings);
   });
 
-  $('#new_making_of_recipe').submit(function(e){
+  $('body').on('submit','#new_making_of_recipe', function(e){
     e.preventDefault();
 
     let that = this
 
-    var values = $(this).serialize();
+    let values = $(this).serialize();
 
-    var making = $.post('/makingsFromRecipe', values);
+    let making = $.post('/makingsFromRecipe', values);
  
     making.done(function(data) {
       newMaking = new Making(data.id, data.rating, data.notes, data.user_id, data.recipe_id)
       $('#recipe-makings ul').append(newMaking.createListItem());
       that.reset();
     });
-  });
 
+    return false;
+  });
 })
+
+
+
 
 
 
