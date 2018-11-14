@@ -1,34 +1,33 @@
-  class Ingredient{
-    constructor(id, name, serving_size_number, serving_size_unit){
-      this.id = id
-      this.name = name
-      this.serving_size_number = serving_size_number
-      this.serving_size_unit = serving_size_unit
-    }
+let INGREDIENTS = [] 
+let start = 0
+let end = 5
+  
+class Ingredient{
+  constructor(id, name, serving_size_number, serving_size_unit){
+    this.id = id
+    this.name = name
+    this.serving_size_number = serving_size_number
+    this.serving_size_unit = serving_size_unit
+  }
 
-    createIngredientDivs(){
-      return `<div class="name">
+  createIngredientDivs(){
+    return `<div class="name">
         <a href="/ingredients/${this.id}">${this.name}</a>
       </div><!--name-->
       <div class="serving">
         Serving Size: ${this.serving_size_number} ${this.serving_size_unit}
       </div> <!--serving-->`
-    }
   }
+}
 
-  const displayIngredients = function(){
-    for(let i of INGREDIENTS.slice(start, end)){
-      $('#ingredients-index').append(i.createIngredientDivs())
-    }
+const displayIngredients = function(){
+  for(let i of INGREDIENTS.slice(start, end)){
+    $('#ingredients-index').append(i.createIngredientDivs())
   }
+}
+  
 
-
-
-document.addEventListener("turbolinks:load", function(){
-  let INGREDIENTS = [] 
-  let start = 0
-  let end = 5
-
+const getIngredients = function(){
   $.getJSON('/ingredients', (ingredients) => {
     ingredients.forEach( (i) => {
       let newIngred = new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
@@ -36,6 +35,9 @@ document.addEventListener("turbolinks:load", function(){
     })
     displayIngredients();
   });
+}
+
+document.addEventListener("turbolinks:load", function(){
 
   $('#next').on('click', () =>{
     //empty out current list
