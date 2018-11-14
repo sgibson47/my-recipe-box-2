@@ -43,9 +43,9 @@ And, my ingredients index view looked like this:
   <%end%>
 </div> <!--ingredient-->
 
-To meet the project requirements, I made changes to both of these items, generated a serializer to save me from having to create my own, and created a new file to hold the JavaScript that would retrieve and display the ingredients saved in my database. 
+To meet the project requirements, I made changes to both of these items, generated a serializer, and created a new file to hold the JavaScript that would retrieve and display the ingredients saved in my database. 
 
-I emptied out the out the div holding each ingredient's details and added a div with a distinct id so that I could easily select and inject content into. I also added "Previous" and "Next" buttons so I could display a portion of the ingredients and let a user click on these buttons to scroll through the entire collection. 
+I emptied out the out the div holding each ingredient's details and added a div with a distinct id so that I could easily select and inject content into. I also added "Previous" and "Next" buttons so I could display a portion of the ingredients and let a user click on these buttons to scroll through the entire collection. Lastly, I added a script tag in which I called my getIngredients function. That function will request all the ingredients, store them in a colelction and display the first five of them in the ingredients-index div. 
 
 <h1 class="body-title">Ingredients</h1>
 <div id="ingredients-index-buttons">
@@ -55,8 +55,11 @@ I emptied out the out the div holding each ingredient's details and added a div 
 <div class="ingredients">
   <div id="ingredients-index"></div>
 </div>
+<script>
+  getIngredients();
+</script>
 
-I refactored my index action to respond to requests for HTML & JSON so that I didn't need to have a new route and action from which to request JSON representing all the ingredients. Now, my controller action would render the index view when I navigated to the '/ingredients' url and my browser sent a GET request for HTML. And when I requested JSON from the same url, the controller action would render JSON. 
+I refactored my index action to respond to requests for HTML & JSON so that I didn't need to have a new route and action from which to request JSON representing all the ingredients. Now, my controller action would render the index view when I navigated to the '/ingredients' url, and when I requested JSON from the same url, the controller action would render JSON representing all the ingredients. 
 
 def index
   @ingredients = Ingredient.all
@@ -74,9 +77,13 @@ end
 
 Also, I wrote a bunch of JavaScript to do a number of different things for me. I needed JS to request data about all the ingredients from my server, organize the returned data, and to display the data. 
 
-I set up a JavaScript Model Object to organize the returned data and gave the class a method that would create the HTML to display each ingredient. I also, set a variable equal to an empty collection that I pushed each new JS object into so I would be able to access the Ingredient objects to display later. 
+I defined three variables. One held an empty collection that I would later push each new JS Ingredient object into so I would be able to access the Ingredient objects to display later. The other two set start end end values so I could select different segements of the INGREDIENTS collection.
 
 let INGREDIENTS = [] 
+let start = 0
+let end = 5
+
+I set up a JavaScript Model Object to organize the returned data and gave the class prototype a method that would create the HTML to display each ingredient.  
 
 class Ingredient{
   constructor(id, name, serving_size_number, serving_size_unit){
@@ -84,50 +91,52 @@ class Ingredient{
     this.name = name
     this.serving_size_number = serving_size_number
     this.serving_size_unit = serving_size_unit
-
-    INGREDIENTS.push(this)
-  }
-
-  createIngredientDivs(){
-    return `<div class="name">
-      <a href="/ingredients/${this.id}">${this.name}</a>
-    </div><!--name-->
-    <div class="serving">
-      Serving Size: ${this.serving_size_number} ${this.serving_size_unit}
-    </div> <!--serving-->`
   }
 }
 
-I wrote a function that would call the createIngredientDivs() method on a portion of the ingredients and inject the resulting HMTL into the DOM. I also defined variables so I could grab and display different segements of the INGREDIENTS collection. 
+Ingredient.prototype.createIngredientDivs = function(){
+    return `<div class="name">
+        <a href="/ingredients/${this.id}">${this.name}</a>
+      </div><!--name-->
+      <div class="serving">
+        Serving Size: ${this.serving_size_number} ${this.serving_size_unit}
+      </div> <!--serving-->`
+  }
 
-let start = 0
-let end = 5
+I wrote a function that would call the createIngredientDivs() method on a portion of the ingredients and inject the resulting HMTL into the DOM. 
 
-function displayIngredients(){
+const displayIngredients = function(){
   for(let i of INGREDIENTS.slice(start, end)){
     $('#ingredients-index').append(i.createIngredientDivs())
   }
 }
 
-I set up a GET request to '/ingredients' that would request JSON representing all the ingredients, create JS objects of each, store them in the INGREDIENTS collection, and display the first five of them. 
+I wrote a function that would make a GET request to '/ingredients' for JSON representing all the ingredients, create JS objects of each ingredient and store them in the INGREDIENTS collection. This function also empties out the INGREDIENTS collection and the ingredients-index div before displaying a portion of the INGREDIENTS collection. This stops us from displaying duplicative ingredients when we navigate away from and back to the ingredients index. 
 
-$.getJSON('/ingredients', (ingredients) => {
-  ingredients.forEach( (i) => {
-    new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
-  })
-  displayIngredients();
-});
+const getIngredients = function(){
+  $.getJSON('/ingredients', (ingredients) => {
+    INGREDIENTS.length = 0
+    ingredients.forEach( (i) => {
+      let newIngred = new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
+      INGREDIENTS.push(newIngred)
+    })
+    $('#ingredients-index').empty(); 
+    displayIngredients();
+  });
+}
 
-Last, I set up event listeners on the buttons that would erase the ingredients currently on display, increment or decrement the start and end variables, and inject HTML representing the next of previous five ingredients. 
+Last, I set up event listeners on the buttons that would erase the ingredients currently on display, increment or decrement the start and end variables, and inject HTML representing the next of previous five ingredients. I wrapped these two in another eventListener so they would attach to the buttons after the page loaded. 
 
-$('#next').on('click', () =>{
+document.addEventListener("turbolinks:load", function(){
+
+  $('#next').on('click', () =>{
     $('#ingredients-index').empty();
-
+    
     if(end < INGREDIENTS.length){
       start += 5
       end += 5
     }
-
+    
     displayIngredients();
   })
 
@@ -139,15 +148,9 @@ $('#next').on('click', () =>{
       start -= 5
       end -= 5
     }
-
     displayIngredients();
   })
-
-I put all of this code into an event listener that was triggered when I navigated between pages in my Rails application. 
-
-document.addEventListener("turbolinks:load", function(){
-  . . . 
-}
+})
 
 With all that in place, I had satisfied the first and fifth requirements. When I navigated to my ingredients index page the GET request would fire, all of the ingredients would be stored in the INGREDIENTS collection, and the first five ingredients would be displayed. From there, a user could view five ingredients at a time by clicking on the "Next" and "Previous" buttons.  
 

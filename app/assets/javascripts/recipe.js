@@ -8,19 +8,20 @@ class Recipe{
     this.ingredients = ingredients
     this.makings = makings
   }
+}
 
-  createRecipeHeader(){
+Recipe.prototype.createRecipeHeader = function(){
     return `<h1>${this.name}'s Page</h1>`
   }
 
-  createInstructionsDiv(){
+Recipe.prototype.createInstructionsDiv = function(){
     return `<div class="block instructions">
       <h3>Instructions</h3>
       <p>${this.instructions}</p>
     </div><!--instructions-->`
   }
 
-  createEditDeleteDiv(){
+Recipe.prototype.createEditDeleteDiv = function(){
     return `<div class="edit_delete">
       <div class="edit block">
         <a href="/recipes/${this.id}/edit">Edit Recipe</a>
@@ -31,7 +32,7 @@ class Recipe{
     </div><!--edit_delete-->`
   }
 
-  createMakingsDiv(){
+Recipe.prototype.createMakingsDiv = function(){
     return ` <div class="block instructions">
       <h3>Times Users Made ${this.name}</h3>
       <div id="recipe-makings" >
@@ -41,7 +42,6 @@ class Recipe{
       </div>
     </div>`
   }
-}
 
 class Making{
   constructor(id, rating, notes, user_id, recipe_id){
@@ -51,12 +51,11 @@ class Making{
     this.user_id = user_id
     this.recipe_id = recipe_id
   }
-
-  createListItem(){
-    return `<li>Rating:  ${this.rating} stars <br>Notes: ${this.notes}</li>`
-  }
 }
 
+Making.prototype.createListItem = function(){
+    return `<li>Rating:  ${this.rating} stars <br>Notes: ${this.notes}</li>`
+  }
 
 const createIngredientListItems = function (amounts, ingredients){
     var amountsArray =[]
