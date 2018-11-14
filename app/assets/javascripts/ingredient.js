@@ -29,10 +29,12 @@ const displayIngredients = function(){
 
 const getIngredients = function(){
   $.getJSON('/ingredients', (ingredients) => {
+    INGREDIENTS.length = 0
     ingredients.forEach( (i) => {
       let newIngred = new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
       INGREDIENTS.push(newIngred)
     })
+    $('#ingredients-index').empty(); 
     displayIngredients();
   });
 }
