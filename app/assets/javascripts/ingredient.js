@@ -1,8 +1,3 @@
-document.addEventListener("turbolinks:load", function(){
-  let INGREDIENTS = [] 
-  let start = 0
-  let end = 5
-
   class Ingredient{
     constructor(id, name, serving_size_number, serving_size_unit){
       this.id = id
@@ -28,6 +23,13 @@ document.addEventListener("turbolinks:load", function(){
       $('#ingredients-index').append(i.createIngredientDivs())
     }
   }
+
+
+
+document.addEventListener("turbolinks:load", function(){
+  let INGREDIENTS = [] 
+  let start = 0
+  let end = 5
 
   $.getJSON('/ingredients', (ingredients) => {
     ingredients.forEach( (i) => {

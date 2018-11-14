@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function(){
+
   let id = document.getElementById("recipe-show").dataset.id
   let MAKINGS = []
 
@@ -103,20 +103,6 @@ document.addEventListener("turbolinks:load", function(){
     return header + ingredientsDiv + instructions + editDelete
   }
 
-  $.getJSON('/recipes/'+id, (recipe) => {
-    $('#recipe-details').empty()
-
-    let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients, recipe.makings);
-
-    let html = createShowHtml(newGuy);
-
-    $('#recipe-details').append(html);
-
-    displayIngredients(newGuy.amounts, newGuy.ingredients);
-
-    displayMakings(newGuy.makings);
-  });
-
   $('body').on('submit','#new_making_of_recipe', function(e){
     e.preventDefault();
 
@@ -134,7 +120,20 @@ document.addEventListener("turbolinks:load", function(){
 
     return false;
   });
-})
+
+  $.getJSON('/recipes/'+id, (recipe) => {
+    $('#recipe-details').empty()
+
+    let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients, recipe.makings);
+
+    let html = createShowHtml(newGuy);
+
+    $('#recipe-details').append(html);
+
+    displayIngredients(newGuy.amounts, newGuy.ingredients);
+
+    displayMakings(newGuy.makings);
+  });
 
 
 
