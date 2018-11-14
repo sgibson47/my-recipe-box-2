@@ -9,8 +9,9 @@ class Ingredient{
     this.serving_size_number = serving_size_number
     this.serving_size_unit = serving_size_unit
   }
+}
 
-  createIngredientDivs(){
+Ingredient.prototype.createIngredientDivs = function(){
     return `<div class="name">
         <a href="/ingredients/${this.id}">${this.name}</a>
       </div><!--name-->
@@ -18,7 +19,6 @@ class Ingredient{
         Serving Size: ${this.serving_size_number} ${this.serving_size_unit}
       </div> <!--serving-->`
   }
-}
 
 const displayIngredients = function(){
   for(let i of INGREDIENTS.slice(start, end)){

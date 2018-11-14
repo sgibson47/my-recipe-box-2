@@ -43,6 +43,20 @@ class Recipe{
   }
 }
 
+class Making{
+  constructor(id, rating, notes, user_id, recipe_id){
+    this.id = id
+    this.rating = rating
+    this.notes = notes
+    this.user_id = user_id
+    this.recipe_id = recipe_id
+  }
+
+  createListItem(){
+    return `<li>Rating:  ${this.rating} stars <br>Notes: ${this.notes}</li>`
+  }
+}
+
 
 const createIngredientListItems = function (amounts, ingredients){
     var amountsArray =[]
@@ -82,14 +96,6 @@ const createIngredientDiv = function (amounts, ingredients){
     createIngredientListItems(amounts, ingredients)
   }
 
-// const displayMakings = function (makings){
-//     console.log(makings)
-//     console.log(makings[0])
-//     let makingsToDisplayAfterSlice = makings.slice(0, (makings.length - 1))
-//     console.log(makingsToDisplayAfterSlice)
-//     let makingsHTML = createMakingListItems(makingsToDisplayAfterSlice);
-//     $('#recipe-makings ul').append(makingsHTML);
-//   }
 
 const createShowHtml = function (recipe){
     let header = recipe.createRecipeHeader();
@@ -121,8 +127,6 @@ const getRecipe = function(){
 
 document.addEventListener("turbolinks:load", function(){
 
-  getRecipe();
-
   $('body').on('submit','#new_making_of_recipe', function(e){
     e.preventDefault();
 
@@ -134,7 +138,8 @@ document.addEventListener("turbolinks:load", function(){
  
     making.done(function(data) {
       newMaking = new Making(data.id, data.rating, data.notes, data.user_id, data.recipe_id)
-      $('#recipe-makings ul').append(newMaking.createListItem());
+      let newMakingHTML = newMaking.createListItem();
+      $('#recipe-makings ul').append(newMakingHTML);
       that.reset();
     });
   });
