@@ -4,8 +4,6 @@
       this.name = name
       this.serving_size_number = serving_size_number
       this.serving_size_unit = serving_size_unit
-
-      INGREDIENTS.push(this)
     }
 
     createIngredientDivs(){
@@ -33,7 +31,8 @@ document.addEventListener("turbolinks:load", function(){
 
   $.getJSON('/ingredients', (ingredients) => {
     ingredients.forEach( (i) => {
-      new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
+      let newIngred = new Ingredient(i.id, i.name, i.serving_size_number, i.serving_size_unit)
+      INGREDIENTS.push(newIngred)
     })
     displayIngredients();
   });
