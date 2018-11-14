@@ -1,4 +1,3 @@
-
   let id = document.getElementById("recipe-show").dataset.id
   let MAKINGS = []
 
@@ -103,23 +102,6 @@
     return header + ingredientsDiv + instructions + editDelete
   }
 
-  $('body').on('submit','#new_making_of_recipe', function(e){
-    e.preventDefault();
-
-    let that = this
-
-    let values = $(this).serialize();
-
-    let making = $.post('/makingsFromRecipe', values);
- 
-    making.done(function(data) {
-      newMaking = new Making(data.id, data.rating, data.notes, data.user_id, data.recipe_id)
-      $('#recipe-makings ul').append(newMaking.createListItem());
-      that.reset();
-    });
-
-    return false;
-  });
 
   $.getJSON('/recipes/'+id, (recipe) => {
     $('#recipe-details').empty()
@@ -135,7 +117,23 @@
     displayMakings(newGuy.makings);
   });
 
+document.addEventListener("turbolinks:load", function(){
+  $('body').on('submit','#new_making_of_recipe', function(e){
+    e.preventDefault();
 
+    let that = this
+
+    let values = $(this).serialize();
+
+    let making = $.post('/makingsFromRecipe', values);
+ 
+    making.done(function(data) {
+      newMaking = new Making(data.id, data.rating, data.notes, data.user_id, data.recipe_id)
+      $('#recipe-makings ul').append(newMaking.createListItem());
+      that.reset();
+    });
+  });
+})
 
 
 
