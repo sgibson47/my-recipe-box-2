@@ -461,7 +461,7 @@ Lastly, I wrote some JavaScript to control the outcome when the new form was sub
     let that = this
 
     var values = $(this).serialize();
-
+ 
     var making = $.post('/makingsFromRecipe', values);
  
     making.done(function(data) {
