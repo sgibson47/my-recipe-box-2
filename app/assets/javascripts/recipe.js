@@ -105,9 +105,6 @@ const createShowHtml = function (recipe){
   }
 
 const getRecipe = function(){
-  let amountsToDisplay = [];
-  let ingredientsToDisplay = [];
-  let makingsToDisplay = [];
   let id = $("#recipe-show").data('id');
 
   $.getJSON('/recipes/'+id, (recipe) => {

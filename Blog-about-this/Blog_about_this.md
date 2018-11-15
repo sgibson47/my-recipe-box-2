@@ -213,8 +213,11 @@ I emptied out the out the div holding a recipe's details and added a div with a 
   <div id="recipe-details">
   </div><!--recipe-details-->
 </div><!--recipe-show-->
+<script>
+  getRecipe();
+</script>
 
-I generated a serializer and added to it all the attributes of a recipe that I wanted the serializer to output when it serialized a recipe. I also added Active Record Associations to the serializer so that the serializer would serialize a recipe's amounts and ingredients. 
+I generated a serializer and added to it all the attributes of a recipe that I wanted the serializer to output when it serialized a recipe. I also added Active Record Associations to the serializer so it would serialize a recipe's amounts and ingredients, as well. Lastly, I added a script tag in which I called my getRecipe function. That function will request JSON representing the recipe, create a new JS Recipe object based on the returned JSON, create HTML to display the recipe's details and inject that HTML into the DOM. 
 
 class RecipeSerializer < ActiveModel::Serializer
   attributes :id, :name, :instructions, :user_id
@@ -225,53 +228,58 @@ end
 
 Also, I wrote a bunch of JavaScript to do a number of different things for me. I needed JS to request data about the recipe from my server, organize the returned data, and to display the data. 
 
-I set up a JavaScript Model Object to organize the returned data and gave the class methods that would create the HTML to display the pieces of a recipe's show page. 
+I set up a JavaScript Model Object to organize the returned data and gave the class ptotoype methods that would create the HTML to display the pieces of a recipe's show page. 
 
 class Recipe{
-    constructor(id, name, instructions, user_id, amounts, ingredients){
-      this.id = id
-      this.name = name
-      this.instructions = instructions
-      this.user_id = user_id
-      this.amounts = amounts
-      this.ingredients = ingredients
-    }
+  constructor(id, name, instructions, user_id, amounts, ingredients, makings){
+    this.id = id
+    this.name = name
+    this.instructions = instructions
+    this.user_id = user_id
+    this.amounts = amounts
+    this.ingredients = ingredients
+    this.makings = makings
+  }
+}
 
-    createRecipeHeader(){
-      return `<h1>${this.name}'s Page</h1>`
-    }
-    createInstructionsDiv(){
-      return `<div class="block instructions">
-        <h3>Instructions</h3>
-        <p>${this.instructions}</p>
-      </div><!--instructions-->`
-    }
+Recipe.prototype.createRecipeHeader = function(){
+    return `<h1>${this.name}'s Page</h1>`
+  }
 
-    createEditDeleteDiv(){
-      return `<div class="edit_delete">
-        <div class="edit block">
-          <a href="/recipes/${this.id}/edit">Edit Recipe</a>
-        </div><!--edit-->
-        <div class="delete block">
-          <a data-confirm="Are you sure?" data-method="delete" href="/recipes/${this.id}">Delete Recipe</a>
-        </div><!--delete-->
-      </div><!--edit_delete-->`
-    }
+Recipe.prototype.createInstructionsDiv = function(){
+    return `<div class="block instructions">
+      <h3>Instructions</h3>
+      <p>${this.instructions}</p>
+    </div><!--instructions-->`
+  }
+
+Recipe.prototype.createEditDeleteDiv = function(){
+    return `<div class="edit_delete">
+      <div class="edit block">
+        <a href="/recipes/${this.id}/edit">Edit Recipe</a>
+      </div><!--edit-->
+      <div class="delete block">
+        <a data-confirm="Are you sure?" data-method="delete" href="/recipes/${this.id}">Delete Recipe</a>
+      </div><!--delete-->
+    </div><!--edit_delete-->`
   }
 
 Next, I wrote a JavaScript function to create the div to hold a list of ingredients. 
 
-function createIngredientDiv(){
+const createIngredientDiv = function (amounts, ingredients){
     return `<div class="block ingred-list">
       <h3>Ingredients:</h3>
       <ul>
+        ${createIngredientListItems(amounts, ingredients)}
       </ul>
-    </div><!--ingred-ist-->`
+    </div><!--ingred-list-->`
+
+    createIngredientListItems(amounts, ingredients)
   }
 
 Next, I wrote a JavaScript function to create a list item for each of the recipe's ingredients. 
 
-  function createIngredientListItems(amounts, ingredients){
+const createIngredientListItems = function (amounts, ingredients){
     var amountsArray =[]
     for(let a of amounts){
       amountsArray.push(a.servings_per_recipe)
@@ -287,50 +295,39 @@ Next, I wrote a JavaScript function to create a list item for each of the recipe
     return listItems.join('')
   }
 
-Next, I wrote a function that would inject the newly created ingredient list items into the DOM. 
-  function displayIngredients(amounts, ingredients){
-    $('.ingred-list ul').append(createIngredientListItems(amounts, ingredients));
-  }
+Next, I wrote a function to create and organize the major pieces of a recipe's show page. 
 
-I also wrote a function to create and organize the major pieces of a recipe's show page. 
-
-  function createShowHtml(recipe){
+const createShowHtml = function (recipe){
     let header = recipe.createRecipeHeader();
-    let ingredientsDiv = createIngredientDiv();
+    let ingredientsDiv = createIngredientDiv(recipe.amounts, recipe.ingredients);
     let instructions = recipe.createInstructionsDiv();
     let editDelete = recipe.createEditDeleteDiv();
 
     return header + ingredientsDiv + instructions + editDelete
   }
 
-Finally, I wrote some JavaScript to request JSON representing the recipe.  I grabbed the recipe's id from the data attribute I put on the #recipe-show div and used it to make a GET request to the correct url. Next, I created a new Recipe object with the response to the GET request.  After that, I generated the HTML to display the major pieces of a recipe's show page.  Next, I injected that HTML into the DOM.  Lastly, I called displayIngredients() passing in the recipe's amounts and ingredients to create the HTML to display the recipe's ingredients list and inject it into the DOM
+Finally, I wrote a function to request JSON representing the recipe.  I grabbed the recipe's id from the data attribute on the #recipe-show div and used it to make a GET request to the correct url. Next, I created a new Recipe object with the response to the GET request.  After that, I generated the HTML to display the major pieces of a recipe's show page and injected that HTML into the DOM.  
 
-  let id = document.getElementById("recipe-show").dataset.id
+const getRecipe = function(){
+  let id = $("#recipe-show").data('id');
+
   $.getJSON('/recipes/'+id, (recipe) => {
+
     $('#recipe-details').empty()
 
-    let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients);
+    newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients, recipe.makings);
 
     let html = createShowHtml(newGuy);
 
     $('#recipe-details').append(html);
-
-    displayIngredients(newGuy.amounts, newGuy.ingredients);
   });
-
-Once again, I put all of this JavaScript into an event listener that was triggered when I navigated between pages in my Rails application. 
-
-document.addEventListener("turbolinks:load", function(){
-  . . . 
 }
 
-Awesome! At this point, I had satisfied the sedcond and third requirements. When I navigated to a recipe's show page the GET request would fire, the recipe and its associated ingredients and amoutns would be stored in the a new Recipe object, and details about the recipe would be displayed.
+Awesome! At this point, I had satisfied the sedcond and third requirements. When I navigated to a recipe's show page the GET request would fire, the recipe and its associated ingredients and amounts would be stored in the a new Recipe object, and details about the recipe would be displayed.
 
-<h4> Adding a Form that Submits Dynamically </h4>
+<h4> Displaying the Recipe's Makings </h4>
 
-To meet the project requirement that I render a form for creating a resource that submits dynamically, I made changes to my recipes serializer, added a form to the recipes show page and added JavaScript to my recipes.js file that would display the recipe's makings and submit the form without navigating away from the page.
-
-First, I displayed all the recipe's makings on the show page.
+To meet the project requirement that I submit a form dynamically, I planned to add a form to the recipes show page that would allow a user to create a new making associated with the recipe. But first, I wanted to display all the recipe's makings so that I had a place to show the new making without navigating away from the recipe's show page. 
 
 I added an Active Record Association to the serializer so that the serializer would serialize a recipe's makings. 
 
@@ -348,63 +345,115 @@ class Recipe{
       this.ingredients = ingredients
       this.makings = makings
     }
-    ...
   }
 
-In the recipes show file, I added a div with a distinct id that I could inject HTML representing the recipe's makings into. 
- 
- <div class="block instructions">
-    <h3>Times Users Made <%=@recipe.name%></h3>
-    <div id="recipe-makings" >
-      <ul>   
-      </ul>
-    </div>
-  </div>
+I added a method to the Recipe object prototype that would create a div displaying a list of the recipe's makins. 
 
-Then I refactored and added to recipes.js to collect, organize and display the recipe's makings. I set up a JavaScript Model Object to organize the recipe's makings and gave the class a method that would create the HTML to display a list item for each making. I also, set a variable equal to an empty collection that I pushed each new JS object into so I would be able to access the Making objects to display later.
-
-let MAKINGS = []
-
-class Making{
-    constructor(id, rating, notes, user_id, recipe_id){
-      this.id = id
-      this.rating = rating
-      this.notes = notes
-      this.user_id = user_id
-      this.recipe_id = recipe_id
-
-      MAKINGS.push(this)
-    }
-
-    createListItem(){
-      return `<li>Rating:  ${this.rating} stars <br>Notes: ${this.notes}</li>`
-    }
+Recipe.prototype.createMakingsDiv = function(){
+    return ` <div class="block instructions">
+      <h3>Times Users Made ${this.name}</h3>
+      <div id="recipe-makings" >
+        <ul>
+          ${createMakingListItems(this.makings)}
+        </ul>
+      </div>
+    </div>`
   }
 
-I wrote a function that would create a new Making object for each of the recipe's makings, call the createListItem() method on each making and return a string that holds a list itme for each making. 
+I wrote a function to create a list item for each of the recipe's makings.
 
-  function createMakingListItems(makings){
-    var makingsListItemsToDisplay = []
-    makings.forEach(function(making, index, arr){
-      newMaking = new Making(making.id, making.rating, making.notes, making.user_id, making.recipe_id)
-      makingsListItemsToDisplay.push(newMaking.createListItem());
+const createMakingListItems = function (makings){
+    let makingsListItemsToDisplay = []
+    let makingsForEach = makings.slice(0, (makings.length-1))
+    makingsForEach.forEach(function(making, index, arr){
+      makingsListItemsToDisplay.push(`<li>Rating:  ${making.rating} stars <br>Notes: ${making.notes}</li>`);
     })
     return makingsListItemsToDisplay.join('')
   }
 
-I wrote a function that would call createMakingListItems to create the HTML to display a list item for each making and inject it into the DOM. 
+I edited the function to create the HTML for the show page to also generate HTML for a list of the recipe's makings and inject it into the DOM. 
 
-  function displayMakings(makings){
-    $('#recipe-makings ul').append(createMakingListItems(makings));
+const createShowHtml = function (recipe){
+    let header = recipe.createRecipeHeader();
+    let ingredientsDiv = createIngredientDiv(recipe.amounts, recipe.ingredients);
+    let instructions = recipe.createInstructionsDiv();
+    let editDelete = recipe.createEditDeleteDiv();
+    let makings = recipe.createMakingsDiv();
+
+    return header + ingredientsDiv + instructions + editDelete + makings
   }
 
-Lastly, I called displayMakings() passing it the recipe's makings in the GET request that retrieves the recipe and display's its details. 
+I edited the getRecipe function to store the recipe's makings in the new Recipe object's makings attribute. 
+
+const getRecipe = function(){
+  let id = $("#recipe-show").data('id');
 
   $.getJSON('/recipes/'+id, (recipe) => {
-    ... 
 
-    displayMakings(newGuy.makings);
+    $('#recipe-details').empty()
+
+    newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients, recipe.makings);
+
+    let html = createShowHtml(newGuy);
+
+    $('#recipe-details').append(html);
   });
+}
+
+With all that in place, when the page loaded and displayed a recipe's details it would also display a list of all the recipe's makings. 
+
+<h4> Adding a Form that Submits Dynamically </h4>
+
+In order to meet the final requirement that I submit a form dynamically, I added a form to the recipes show page and added JavaScript to my recipes.js file to submit the form without navigating away from the page and display the new making in the list with rest of the recipe's makings.
+
+I refactored my show action to create @user and @making variables that I could user with the form-for action view helper to create a form to create a new making.
+
+def show
+  @user = current_user
+  @making = @recipe.makings.build
+  respond_to do |format|
+    format.html { render :show }
+    format.json { render json: @recipe, status: 200}
+  end
+end
+
+I a
+
+I added a form to creae a new making to the show page view. I didn't give the form a traditional submit button. Instead, I put a button with a distinct id attribute in the form. Later on, I attached an event listener to this button that would handle dynamically submitting the form. 
+
+  <div class="block instructions">
+    <h3>Did you make <%=@recipe.name%>? How did it go?</h3>
+    <div id="recipe-making-form">
+      <%=form_for([@user, @making], :url => '/makingsFromRecipe', :html => { :id => "new_making_of_recipe"})do |f|%>       
+        <%= f.hidden_field :recipe_id, :value => @recipe.id %>  
+        <%= f.label :rating%> 
+        <%= f.number_field :rating, class: "form_fields"%>  
+        <%= f.label :notes%>  
+        <%= f.text_field :notes, class: "form_fields"%> 
+        <br>  
+        <br>  
+        <br>  
+        <br>  
+        <button id="create-recipe-making">Create Making</button>  
+      <%end%>
+    </div>
+  </div>
+
+I set up a JavaScript Model Object to organize the data returned from submitting the form and gave the class prototype a method that would create the HTML to display the new making. 
+
+class Making{
+  constructor(id, rating, notes, user_id, recipe_id){
+    this.id = id
+    this.rating = rating
+    this.notes = notes
+    this.user_id = user_id
+    this.recipe_id = recipe_id
+  }
+}
+
+Making.prototype.createListItem = function(){
+    return `<li>Rating:  ${this.rating} stars <br>Notes: ${this.notes}</li>`
+  }
 
 Now, when the recipes show page loaded not only would the recipe's details be displayed, but also a the recipe's makings would be retrieved, the recipe's makings would be stored in the MAKINGS collection, and a list of the recipe's makings would be displayed as well. 
 
@@ -437,9 +486,13 @@ Also, I added a form to create a new making associated with this recipe that has
 
 I sliced off the last making before displaying them, because the most recently created making was now the empty one that I built in the recipes#show action to wrap the form around. 
 
-  function displayMakings(makings){
-    var makingsToDisplay = makings.slice(0, (makings.length - 1))
-    $('#recipe-makings ul').append(createMakingListItems(makingsToDisplay));
+const createMakingListItems = function (makings){
+    let makingsListItemsToDisplay = []
+    let makingsForEach = makings.slice(0, (makings.length-1))
+    makingsForEach.forEach(function(making, index, arr){
+      makingsListItemsToDisplay.push(`<li>Rating:  ${making.rating} stars <br>Notes: ${making.notes}</li>`);
+    })
+    return makingsListItemsToDisplay.join('')
   }
 
 Next, I drew a new route to which I would submit the form. 
@@ -456,27 +509,28 @@ Next, I created a makings#createFromRecipe controller action that mirrored my ma
     end
   end
 
-Lastly, I wrote some JavaScript to control the outcome when the new form was submitted. I prevented its default behavior, serialized the form data, and submitted the data to the new '/makingsFromRecipe' route. Next, I used the response from the POST request to create a new Making object, create a list item for it, and to append that list item to the existing list of the recipe's makings. I also stored the form in a variable so that I could reset it after creating and displaying the new making. 
+Last, I set up an event listener on the "Create Making" button that would submit the form via POST request to the new '/makingsFromRecipe' route, organize the response in a new Making object, generate HTML to display the making, inject that HTML into the DOm and reset the form. I wrapped it in another eventListener so it would attach to the button after the page loaded. 
 
-  $('#new_making_of_recipe').submit(function(e){
+document.addEventListener("turbolinks:load", function(){
+  $('#create-recipe-making').on('click', function(e){
     e.preventDefault();
+    $.ajax({
+      type:"POST",
+      url: '/makingsFromRecipe',
+      data: $('#new_making_of_recipe').serialize(),
+      success: function(data){
+        newMaking = new Making(data.id, data.rating, data.notes, data.user_id, data.recipe_id)
+        let newMakingHTML = newMaking.createListItem();
+        $('#recipe-makings ul').append(newMakingHTML);
+        $('#new_making_of_recipe').trigger('reset');
+      }
+    }) 
+  })
+})
 
-    let that = this
+With all that in place, I had satisfied fourth requirement. When I navigated to my recipes show page a form to create a new making would be displayed. If a user submitted the form, a new making associated with this recipe would be created and displayed dynamically. 
 
-    var values = $(this).serialize();
- 
-    var making = $.post('/makingsFromRecipe', values);
- 
-    making.done(function(data) {
-      newMaking = new Making(data.id, data.rating, data.notes, data.user_id, data.recipe_id)
-      $('#recipe-makings ul').append(newMaking.createListItem());
-      that.reset();
-    });
-  });
-
-With all that in place, I had satisfied fourth requirement. When I navigated to my recipes show page a form to create a new making would be displayed. If a user submitted the form, a new making associated with this recipe would be created and displayed without reloading the page or navigating away. 
-
-I hope my walking through how I refactored my Rails project to meet the Rails and JavaScript requirements was helpful.
+I hope my walking through how I refactored my Rails project to meet the Rails and JavaScript requirements was helpful to you.
 
 Check out the code at: https://github.com/sgibson47/my-recipe-box-2
 
