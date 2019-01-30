@@ -101,7 +101,9 @@ const createShowHtml = function (recipe){
     let editDelete = recipe.createEditDeleteDiv();
     let makings = recipe.createMakingsDiv();
 
-    return header + ingredientsDiv + instructions + editDelete + makings
+    let button = `<button id="sort">Sort</button>`
+
+    return header + ingredientsDiv + instructions + editDelete +button+ makings
   }
 
 const getRecipe = function(){
@@ -111,12 +113,47 @@ const getRecipe = function(){
 
     $('#recipe-details').empty()
 
-    newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients, recipe.makings);
+    let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients, recipe.makings);
 
     let html = createShowHtml(newGuy);
 
     $('#recipe-details').append(html);
+
+    attachSortListener();
   });
+}
+
+const attachSortListener = function(){
+  $('#sort').on('click', function(){
+    let id = $("#recipe-show").data('id');
+
+    $.getJSON('/recipes/'+id, (recipe) => {
+
+    $('#recipe-makings').empty()
+
+    let newGuy = new Recipe(recipe.id, recipe.name, recipe.instructions, recipe.user_id, recipe.amounts, recipe.ingredients, recipe.makings);
+
+    newGuy.makings.sort(function(a, b){
+      if(b.rating > a.rating){
+        return 1
+      }
+      if(b.rating < a.rating){
+        return -1
+      }
+      if(b.notes < a.notes){
+        return 1
+      }
+      if(b.notes > a.notes){
+        return -1
+      }
+    })
+
+    let html = newGuy.createMakingsDiv();
+
+    $('#recipe-makings').append(html);
+
+  });
+  })
 }
 
 // document.addEventListener("turbolinks:load", function(){
@@ -154,10 +191,11 @@ document.addEventListener("turbolinks:load", function(){
         $('#recipe-makings ul').append(newMakingHTML);
         $('#new_making_of_recipe').trigger('reset');
       }
-    })
-
-    
+    })    
   })
+
+
+
 })
 
 

@@ -9,6 +9,13 @@ class Ingredient{
     this.serving_size_number = serving_size_number
     this.serving_size_unit = serving_size_unit
   }
+
+  static displayIngredients(){
+    for(let i of INGREDIENTS.slice(start, end)){
+      $('#ingredients-index').append(i.createIngredientDivs())
+    }
+  }
+
 }
 
 Ingredient.prototype.createIngredientDivs = function(){
@@ -20,11 +27,7 @@ Ingredient.prototype.createIngredientDivs = function(){
       </div> <!--serving-->`
   }
 
-const displayIngredients = function(){
-  for(let i of INGREDIENTS.slice(start, end)){
-    $('#ingredients-index').append(i.createIngredientDivs())
-  }
-}
+
   
 
 const getIngredients = function(){
@@ -35,7 +38,7 @@ const getIngredients = function(){
       INGREDIENTS.push(newIngred)
     })
     $('#ingredients-index').empty(); 
-    displayIngredients();
+    Ingredient.displayIngredients();
   });
 }
 
@@ -52,7 +55,7 @@ document.addEventListener("turbolinks:load", function(){
     }
 
     //display ingredients
-    displayIngredients();
+    Ingredient.displayIngredients();
   })
 
 
@@ -67,7 +70,7 @@ document.addEventListener("turbolinks:load", function(){
     }
 
     //display ingredients
-    displayIngredients();
+    Ingredient.displayIngredients();
   })
 })
 
