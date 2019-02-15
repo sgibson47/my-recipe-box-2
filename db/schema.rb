@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2018_09_19_223231) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "amounts", force: :cascade do |t|
-    t.integer "ingredient_id"
-    t.integer "recipe_id"
+    t.bigint "ingredient_id"
+    t.bigint "recipe_id"
     t.integer "servings_per_recipe"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -33,8 +36,8 @@ ActiveRecord::Schema.define(version: 2018_09_19_223231) do
   create_table "makings", force: :cascade do |t|
     t.integer "rating"
     t.string "notes"
-    t.integer "user_id"
-    t.integer "recipe_id"
+    t.bigint "user_id"
+    t.bigint "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_makings_on_recipe_id"
@@ -61,4 +64,6 @@ ActiveRecord::Schema.define(version: 2018_09_19_223231) do
     t.datetime "oauth_expires_at"
   end
 
+  add_foreign_key "makings", "recipes"
+  add_foreign_key "makings", "users"
 end

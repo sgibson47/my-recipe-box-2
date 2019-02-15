@@ -17,7 +17,9 @@ gem 'dotenv-rails'
 # Used to mock an https url
 gem 'thin'
 
-gem 'sqlite3'
+# gem 'sqlite3'
+gem 'pg'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
